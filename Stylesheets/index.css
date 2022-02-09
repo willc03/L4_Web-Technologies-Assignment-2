@@ -1,0 +1,40 @@
+/*
+    Author: Will Corkill
+    Name: index.css
+    Last Accessed: 12/01/2022
+    Description: Style the index.html webpage.
+*/
+#main { /* The div has horizontal margins set to auto & width set to place content in the middle. */
+    margin: auto;
+    width: 60%;
+}
+h1 { /* The vertical margins are manipulated to make the primary heading more prominent on the page. */
+    color: #34516c;
+    margin: 3.5% 0%; /* Two measurements are given as to apply a margin exclusively to vertical axes. */
+}
+#main h2 { /* Set all subheadings (h2) with a yellow colour from the given colour scheme */
+    position: static;
+    color: #f2be1a;
+}
+/* The rest of the CSS is used to properly size the YouTube iFrame. */
+.video_container {
+    position: relative;
+    width: 80%;
+    height: 0%;
+    padding-bottom: 50%;
+}
+.video_content {
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* Change content width on mobile-size devices, as more space is needed to fit content */
+@media screen and (max-width: 480px) {
+    #main {
+        width: 80%;
+    }
+}
