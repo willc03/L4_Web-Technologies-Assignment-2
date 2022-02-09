@@ -59,11 +59,11 @@ The design requirements state that the following must apply to the assessment re
 | Submit/present reviews |  |  | / | / | No |
 | Secure passwords |  |  | / | / | No |
 | Dynamic content is response |  |  | / | / | No |
-| Advanced products search |  |  |  | / | Yes |
-| Checkout mechanism |  |  |  | / | Yes |
-| Little/no bugs |  |  |  | / | Yes |
-| Professional looking and functional web application |  |  |  | / | Yes |
-| Extended functionality/presentation additional to the above criteria |  |  |  | / | Yes |
+| Advanced products search |  |  |  | / | No |
+| Checkout mechanism |  |  |  | / | No |
+| Little/no bugs |  |  |  | / | No |
+| Professional looking and functional web application |  |  |  | / | No |
+| Extended functionality/presentation additional to the above criteria |  |  |  | / | No |
 
 # Assessment Response
 
