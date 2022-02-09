@@ -1,2 +1,4 @@
 # Ignore Mac system files
 .DS_store
+Pages/.DS_Store
+.DS_Store
