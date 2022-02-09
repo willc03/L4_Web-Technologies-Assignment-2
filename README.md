@@ -42,7 +42,7 @@ The design requirements state that the following must apply to the assessment re
 | Requirement | 3rd Class | 2:2 Class | 2:1 Class | 1st Class | Completed
 | -- | -- | -- | -- | -- | -- |
 | Follows brief | / | / | / | / | No |
-| All pages are defined with .php extension (where the PHP is either inside the HTML or as a separate file) | / | / | / | / | No |
+| All pages are defined with .php extension (where the PHP is either inside the HTML or as a separate file) | / | / | / | / | Yes |
 | Communicates with a backend MySQL database using PHP | / | / | / | / | No |
 | Provides login functionality | / | / | / | / | No |
 | Provides live offers | / | / | / | / | No |
