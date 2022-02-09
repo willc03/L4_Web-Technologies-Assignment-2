@@ -1,0 +1,105 @@
+<!--
+    Author: Will Corkill
+    Name: index.html
+    Last Accessed: 13/01/2022
+    Description: The first page the user will see on the website.
+-->
+
+<?php
+    session_start(); // Allows the browser to temporarily store data, but not save it on the user's computer
+
+    function getDatabaseConnection() {
+        $connection = mysqli_connect("localhost", "root", "password", "web_technologies_ass2");
+        return $connection;
+    }
+
+?>
+
+<!DOCTYPE html>
+<html lang="en"> <!-- Language is specified to increase SEO. -->
+
+    <head> <!-- Content in the head of the document invisible to the user -->
+        <title>Home - UCLan Student's Union Shop</title> <!-- Sets the name of the tab in the browser -->
+        <link type="text/css" rel="stylesheet" href="../Stylesheets/global.css"> <!-- Style the header & footer of the page -->
+        <link type="text/css" rel="stylesheet" href="../Stylesheets/index.css"> <!-- A unique CSS file for this page exclusively -->
+        <meta name="viewport" content="width=device-width, initial-scale=1"> <!-- Enable media queries & define charset -->
+        <meta charset="utf-8">
+        <script src="../Scripts/navigation.js"></script> <!-- Used to configure the hamburger menu -->
+    </head>
+
+    <body> <!-- Content in the body is visible to the user -->
+        <div id="content">
+            <div id="header"> <!-- Defines the top of the page, visible on all pages -->
+                <a href="index.html"> <!-- Allows the UCLan logo to act as a button (Nikitha, 2018) -->
+                    <img id="uclan_logo" src="../Images/uclan_logo.png" alt="University of Central Lancashire Logo">
+                </a>
+                <h2 id="title">Student Shop</h2>
+                <input type="image" id="hamburger_menu" src="../Images/HamburgerMenu.svg" onclick="onMenuMouseDown()" alt="Menu toggle"> <!-- Create the hamburger menu for mobile-sized devices with click event (w3schools, n.d.) -->
+                <nav id="navigation"> <!-- Create anchors and container for all navigation. -->
+                    <a href="index.php">Home</a>
+                    <a href="products.php">Products</a>
+                    <a href="cart.php">Cart</a>
+                    <?php
+                        if (isset($_SESSION["isLoggedIn"]) and $_SESSION["isLoggedIn"]) 
+                        {
+                            echo "<a>Log out</a>";
+                        }
+                        else
+                        {
+                            echo "<a href=\"login.php\">Sign up</a>";
+                        }
+                    ?>
+                </nav>
+            </div>
+            <div id="mobileNavigationContainer"></div>
+            
+            <div id="main"> <!-- Defines the main content of the page, below the header, above the footer. -->
+                <div class="offers">
+                    <?php
+                        $result = mysqli_query(getDatabaseConnection(), "SELECT offer_title FROM tbl_offers;");
+                        while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+                            echo "<p>" . $row["offer_title"] . "</p>";
+                        }
+                    ?>
+                </div>
+                <div class="introduction"> <!-- The introduction contains all text on the index page -->
+                    <h1>Where opportunity creates success</h1> <!-- The h1 heading is used here as the main heading for the page -->
+                    <p>Every student at The University of Central Lancashire is automatically a member of the Students' Union. We're here to make life better for students - inspiring you to succeed and achieve your goals.</p>
+                    <p>Everything you need to know about UCLan Students' Union. Your membership starts here.</p>
+                </div>
+                <h2>Together</h2>
+                <div class="video_container">
+                    <video class="video_content" controls> <!-- The source tags are used for browsers which may not support the use of mp4 or ogg files, so can choose between them -->
+                        <source src="../UCLan%20Together.mp4" type="video/mp4">
+                        <source src="../UCLan%20Together.ogg" type="video/ogg">
+                    </video>
+                </div>
+                <h2>Join our global community</h2>
+                <div class="video_container"> <!-- A container is used to manage the size on different devices. -->
+                    <iframe src="https://www.youtube.com/embed/i2CRunZv9CU" title="UCLan Student's Union Video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" class="video_content"></iframe>
+                </div>
+            </div>
+        </div>
+
+        <footer id="footer"> <!-- Defines the bottom of the page, containing all information about the website and company. -->
+            <div class="Links"> <!-- All sections are placed into containers to make flexbox consistent on all screen sizes -->
+                <h3 class="category">Links</h3>
+                <a href="https://www.uclansu.co.uk">Student's Union</a>
+            </div>
+            <div class="Contact">
+                <h3 class="category">Contact</h3>
+                <p>Email: <a href="mailto:suinformation@uclan.ac.uk">suinformation@uclan.ac.uk</a></p> <!-- mailto will open the user's email client when pressed (RapidTables, n.d.) -->
+                <p>Phone: <a href="tel:01772893000">01772 893000</a></p> <!-- tel will ask the user if they want to phone the number, if available (W3Docs, n.d.) -->
+            </div>
+            <div class="Location">
+                <h3 class="category">Location</h3>
+                <p>University of Central Lancashire Student's Union</p> <!-- Paragraph styling has been applied so all of these paragraphs appear as an address -->
+                <p>Fylde Road, Preston, PR1 7BY</p>
+                <p>Registered in England</p>
+                <p>Company Number: 7623917</p>
+                <p>Registered Charity Number: 1142616</p>
+            </div>
+        </footer>
+    </body>
+
+</html>

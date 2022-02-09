@@ -1,0 +1,61 @@
+/*
+    Author: Will Corkill
+    Name: login.css
+    Last Accessed: 02/01/2022
+    Description: Style the product containers as a larger container used on products.html
+*/
+img:not(#uclan_logo) { /* Ensure the container's image stays within the bounds */
+    width: 100%;
+}
+#main { /* Make a single column in the centre of the page to place all main content */
+    width: 60%;
+    margin: auto;
+    margin-bottom: 2.5%;
+}
+#main a {
+    font-size: 0.8em;
+    margin-left: 5%;
+}
+form {
+    border: 3px solid #be1622;
+    background-color: white;
+    border-radius: 8px;
+    transition-duration: 0.5s; /* The duration between colour changes on hovering */
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+}
+label::after {
+    content: "\a";
+    white-space: pre;
+}
+input {
+    border-radius: 5px;
+    border: 3px ridge #be1622;
+    transition-duration: 0.5s;
+}
+input:focus {
+    outline-style: none;
+    border: 3px ridge blue;
+}
+#submitRequest {
+    flex-shrink: 1.3;
+}
+
+/* Next, define the tablet bahaviour */
+@media screen and (max-width: 768px) {
+    .productContainer {
+        width: 40%;
+        border: 2px solid #f3f3f3;
+        background-color: #f3f3f3;
+    }
+}
+
+/* Finally, define the mobile behaviour */
+@media screen and (max-width: 480px) {
+    .productContainer {
+        width: 100%;
+        border: 2px solid #f3f3f3;
+        background-color: #f3f3f3;
+    }
+}
