@@ -35,6 +35,22 @@
     border: none;
 }
 
+.offer {
+    width: 75%;
+    margin: auto;
+    background-color: #f3f3f3;
+    border: 2px solid #c3c3c3;
+    border-radius: 5px;
+}
+.offer h2 {
+    padding-top: 5%;
+    padding-left: 5%;
+}
+.offer p {
+    margin: 0% 5%;
+    padding-bottom: 5%;
+}
+
 /* Change content width on mobile-size devices, as more space is needed to fit content */
 @media screen and (max-width: 480px) {
     #main {
