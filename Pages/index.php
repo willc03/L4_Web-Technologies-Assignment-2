@@ -5,6 +5,22 @@
     Description: The first page the user will see on the website.
 -->
 <!DOCTYPE html>
+
+<?php
+    function getDatabaseConnection()
+    {
+        $dbServerName = "localhost";
+        $username = "root";
+        $password = "password";
+        $connection = new mysqli($dbServerName, $username, $password, "web_technologies_ass2");
+        while ($connection->connect_error)
+        {
+            $connection = new mysqli($dbServerName, $username, $password, "web_technologies_ass2");
+        }
+        return $connection;
+    }
+?>
+
 <html lang="en"> <!-- Language is specified to increase SEO. -->
 
     <head> <!-- Content in the head of the document invisible to the user -->
@@ -35,8 +51,50 @@
             <div id="mobileNavigationContainer"></div>
             
             <div id="main"> <!-- Defines the main content of the page, below the header, above the footer. -->
-                <div class="offers">
+                <div class="offer_container">
                     <h2 class="title">Offers</h2>
+                    <div id="offer_slides" class="carousel carousel-dark slide carousel-fade" data-bs-ride="carousel"> <!-- Code from Bootstrap -->
+                        <!-- The slideshow/carousel -->
+                        <div class="carousel-inner">
+                            <?php
+                                $dbConnection = getDatabaseConnection();
+                                $selectOffers = "SELECT * FROM `offers`;";
+                                $sqlResult = $dbConnection->query($selectOffers);
+
+                                if ($sqlResult->num_rows > 0)
+                                {
+                                    $isFirstIteration = true;
+                                    while ($offer = $sqlResult->fetch_assoc())
+                                    {
+                                        // Opening div tag for the carousel
+                                        echo '<div class="carousel-item';
+                                        if ($isFirstIteration == true) {
+                                            echo " active";
+                                            $isFirstIteration = false;
+                                        }
+                                        echo '">';
+                                        // Offer content
+                                        echo '<div class="offer">';
+                                        echo '<h2 class="sub_title">' . $offer["offer_title"] . '</h2>';
+                                        echo '<p>' . $offer["offer_description"] . "</p>";
+                                        echo '</div>';
+                                        // Closing div tag for carousel.
+                                        echo '</div>';
+                                    }
+                                }
+
+                                $dbConnection->close();
+                            ?>
+                        </div>
+
+                        <!-- Left and right controls/icons -->
+                        <button class="carousel-control-prev" type="button" data-bs-target="#offer_slides" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon"></span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#offer_slides" data-bs-slide="next">
+                            <span class="carousel-control-next-icon"></span>
+                        </button>
+                    </div>
                 </div>
                 <div class="introduction"> <!-- The introduction contains all text on the index page -->
                     <h2 class="title">Where opportunity creates success</h2> <!-- The h1 heading is used here as the main heading for the page -->
