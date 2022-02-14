@@ -45,7 +45,7 @@ The design requirements state that the following must apply to the assessment re
 | All pages are defined with .php extension (where the PHP is either inside the HTML or as a separate file) | / | / | / | / | Yes |
 | Communicates with a backend MySQL database using PHP | / | / | / | / | No |
 | Provides login functionality | / | / | / | / | No |
-| Provides live offers | / | / | / | / | No |
+| Provides live offers | / | / | / | / | Yes |
 | Product items are stored in the database | / | / | / | / | No |
 | Submission includes a README.md file | / | / | / | / | No |
 | Uses sessions to detect logged in users |  | / | / | / | No |
