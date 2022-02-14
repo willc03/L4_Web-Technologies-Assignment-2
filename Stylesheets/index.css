@@ -8,13 +8,16 @@
     margin: auto;
     width: 60%;
 }
-h1 { /* The vertical margins are manipulated to make the primary heading more prominent on the page. */
+
+.title { /* The vertical margins are manipulated to make the primary heading more prominent on the page. */
     color: #34516c;
     margin: 3.5% 0%; /* Two measurements are given as to apply a margin exclusively to vertical axes. */
+    font-size: 2em;
 }
-#main h2 { /* Set all subheadings (h2) with a yellow colour from the given colour scheme */
+.sub_title { /* Set all subheadings (h2) with a yellow colour from the given colour scheme */
     position: static;
     color: #f2be1a;
+    margin-bottom: 10px;
 }
 /* The rest of the CSS is used to properly size the YouTube iFrame. */
 .video_container {
