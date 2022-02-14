@@ -11,9 +11,11 @@
         <title>Home - UCLan Student's Union Shop</title> <!-- Sets the name of the tab in the browser -->
         <link type="text/css" rel="stylesheet" href="../Stylesheets/global.css"> <!-- Style the header & footer of the page -->
         <link type="text/css" rel="stylesheet" href="../Stylesheets/index.css"> <!-- A unique CSS file for this page exclusively -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"> <!-- The Bootstrap version 5 stylesheet -->
         <meta name="viewport" content="width=device-width, initial-scale=1"> <!-- Enable media queries & define charset -->
         <meta charset="utf-8">
         <script src="../Scripts/navigation.js"></script> <!-- Used to configure the hamburger menu -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script> <!-- The Bootstrap version 5 latest scripts -->
     </head>
 
     <body> <!-- Content in the body is visible to the user -->
@@ -33,19 +35,22 @@
             <div id="mobileNavigationContainer"></div>
             
             <div id="main"> <!-- Defines the main content of the page, below the header, above the footer. -->
+                <div class="offers">
+                    <h2 class="title">Offers</h2>
+                </div>
                 <div class="introduction"> <!-- The introduction contains all text on the index page -->
-                    <h1>Where opportunity creates success</h1> <!-- The h1 heading is used here as the main heading for the page -->
+                    <h2 class="title">Where opportunity creates success</h2> <!-- The h1 heading is used here as the main heading for the page -->
                     <p>Every student at The University of Central Lancashire is automatically a member of the Students' Union. We're here to make life better for students - inspiring you to succeed and achieve your goals.</p>
                     <p>Everything you need to know about UCLan Students' Union. Your membership starts here.</p>
                 </div>
-                <h2>Together</h2>
+                <h2 class="sub_title">Together</h2>
                 <div class="video_container">
                     <video class="video_content" controls> <!-- The source tags are used for browsers which may not support the use of mp4 or ogg files, so can choose between them -->
                         <source src="../UCLan%20Together.mp4" type="video/mp4">
                         <source src="../UCLan%20Together.ogg" type="video/ogg">
                     </video>
                 </div>
-                <h2>Join our global community</h2>
+                <h2 class="sub_title">Join our global community</h2>
                 <div class="video_container"> <!-- A container is used to manage the size on different devices. -->
                     <iframe src="https://www.youtube.com/embed/i2CRunZv9CU" title="UCLan Student's Union Video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" class="video_content"></iframe>
                 </div>
