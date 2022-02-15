@@ -5,6 +5,29 @@
     Description: The page which will display a specific item. Only accessible via clicking on an item.
 -->
 <!DOCTYPE html>
+
+<?php
+
+    if (!isset($_POST["productid"])) // If the user has tried to access this page without selecting a product, they will be redirected to another page
+    {
+        header("Location: ./products.php"); // Send the user back to the products page.
+        exit(); // End this PHP script before the function is generated to save memory.
+    }
+
+    function getDatabaseConnection()
+    {
+        $dbServerName = "localhost";
+        $username = "root";
+        $password = "password";
+        $connection = new mysqli($dbServerName, $username, $password, "web_technologies_ass2");
+        while ($connection->connect_error)
+        {
+            $connection = new mysqli($dbServerName, $username, $password, "web_technologies_ass2");
+        }
+        return $connection;
+    }
+?>
+
 <html lang="en"> <!-- Language is specified to increase SEO. -->
 
     <head> <!-- Content invisible to the user -->
