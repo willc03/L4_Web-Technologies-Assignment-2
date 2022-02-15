@@ -77,7 +77,7 @@ nav {
 #hamburger_menu { /* Hide the hamburger menu by default */
     display: none;
 }
-nav a { /* Set behaviour of links (exclusively in the navigation menu) */
+nav a, nav a:hover { /* Set behaviour of links (exclusively in the navigation menu) */
     display: flex;
     align-items: center;
     color: white;
