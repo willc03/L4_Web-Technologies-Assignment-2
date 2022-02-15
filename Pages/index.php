@@ -43,9 +43,9 @@
                 <h2 id="title">Student Shop</h2>
                 <input type="image" id="hamburger_menu" src="../Images/HamburgerMenu.svg" onclick="onMenuMouseDown()" alt="Menu toggle"> <!-- Create the hamburger menu for mobile-sized devices with click event (w3schools, n.d.) -->
                 <nav id="navigation"> <!-- Create anchors and container for all navigation. -->
-                    <a href="index.html">Home</a>
-                    <a href="products.html">Products</a>
-                    <a href="cart.html">Cart</a>
+                    <a href="index.php">Home</a>
+                    <a href="products.php">Products</a>
+                    <a href="cart.php">Cart</a>
                 </nav>
             </div>
             <div id="mobileNavigationContainer"></div>
