@@ -58,7 +58,7 @@
                         <div class="carousel-inner">
                             <?php
                                 $dbConnection = getDatabaseConnection();
-                                $selectOffers = "SELECT * FROM `offers`;";
+                                $selectOffers = "SELECT * FROM offers;";
                                 $sqlResult = $dbConnection->query($selectOffers);
 
                                 if ($sqlResult->num_rows > 0)
