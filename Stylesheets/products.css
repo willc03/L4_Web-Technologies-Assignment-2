@@ -20,7 +20,7 @@ img:not(#uclan_logo) { /* Applies to all images that are not the header logo, en
     margin-left: 5%;
 }
 
-#Hoodie, #Jumper, #Tshirt { /* The containers for each type of product, which can be scrolled to by the browser */
+#products { /* The containers for each type of product, which can be scrolled to by the browser */
     display: flex; /* The products will be displayed using flexbox, as this is an effective method of creating a table. */
     flex-wrap: wrap; /* Using flex-wrap will ensure that products exceeding the bounds of the container are moved to a new row */
     justify-content: space-evenly; /* Ensures all products of any type have consistent spacing */
@@ -68,6 +68,15 @@ img:not(#uclan_logo) { /* Applies to all images that are not the header logo, en
 .new_line::after { /* (Edpresso Team, n.d.) regarding CSS line-break */
     content: "\a\a";
     white-space: pre;
+}
+.read_more {
+    background: none;
+    border: none;
+    color: #007fb0;
+    text-decoration: underline;
+    margin-left: 5%;
+    padding-left: 0px;
+    font-size: 0.8em;
 }
 /*
 This section of CSS will be used to style the

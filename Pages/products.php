@@ -5,6 +5,22 @@
     Description: The page displaying all of the products to the user.
 -->
 <!DOCTYPE html>
+
+<?php
+    function getDatabaseConnection()
+    {
+        $dbServerName = "localhost";
+        $username = "root";
+        $password = "password";
+        $connection = new mysqli($dbServerName, $username, $password, "web_technologies_ass2");
+        while ($connection->connect_error)
+        {
+            $connection = new mysqli($dbServerName, $username, $password, "web_technologies_ass2");
+        }
+        return $connection;
+    }
+?>
+
 <html lang="en"> <!-- Language is specified to increase SEO. -->
 
     <head> <!-- Content invisible to the user -->
@@ -13,8 +29,8 @@
         <link type="text/css" rel="stylesheet" href="../Stylesheets/products.css">
         <meta name="viewport" content="width=device-width, initial-scale=1"> <!-- Enable media queries & define charset -->
         <meta charset="utf-8">
-        <script src="../Scripts/loadProducts.js"></script> <!-- Used to load all products in the JavaScript object -->
         <script src="../Scripts/navigation.js"></script> <!-- Used to configure the hamburger menu -->
+        <script src="../Scripts/manageCart.js"></script> <!-- This script provides local functions for managing the cart -->
     </head> 
 
     <body> <!-- Content in the body is visible to the user -->
@@ -42,9 +58,42 @@
                     The containers with said IDs are shown below the "quick_scroller" paragraph.
                 -->
                 <p id="quick_scroller">products > <a href="#Hoodie">hoodies</a> <a href="#Jumper">jumpers</a> <a href="#Tshirt">t-shirts</a></p>
-                <div id="Hoodie"></div>
-                <div id="Jumper"></div>
-                <div id="Tshirt"></div>
+                <div id="products">
+                <?php
+                    $dbConnection = getDatabaseConnection(); // Connect to the database
+                    $selectProducts = "SELECT * FROM products;"; // Write a query to fetch all the products
+                    $sqlResult = $dbConnection->query($selectProducts); // Execute the query
+
+                    if ($sqlResult and $sqlResult->num_rows > 0) // Check if the results exist
+                    {
+                        while ($product = $sqlResult->fetch_assoc()) // Fetch each row
+                        {
+                            $getProductTypeInfo = 'SELECT productTypeDescription, price FROM productTypes WHERE productType="' . $product["product_type"] . '";';
+                            $sqlProductInfo = $dbConnection->query($getProductTypeInfo);
+                            $productInfo = $sqlProductInfo->fetch_row();
+                            $productDescription = $productInfo[0];
+                            $productPrice = $productInfo[1];
+
+                            // Start container
+                            echo '<div class="productContainer">'; // Display the results to the user.
+                            echo '<img src="' . $product["product_image"] . '">';
+                            echo '<h2>' . $product["colour"] . '</h2>';
+                            echo '<h2>' . $product["product_type"] . '</h2>';
+                            echo '<p class="productDescription">' . $productDescription . '</p>';
+                            // A small form will be used to redirect the user when they press read more
+                            echo '<form action="item.php" method="post">';
+                            echo '<input type="hidden" name="productid" id="productid" value="' . $product["product_id"] . '">';
+                            echo '<input class="new_line read_more" type="submit" name="readMoreClick" value="Read more...">';
+                            echo '</form>'; // End form
+                            echo '<strong class="productPrice"> £' . $productPrice . '</strong>';
+                            // Create buy button
+                            echo '<input type="button" class="purchaseButton" value="Buy" onclick="addToCart(\'' . $product["product_type"] . '\', \'' . $product["colour"] . '\')">';
+                            // End container
+                            echo '</div>';
+                        }
+                    }
+                ?>
+                </div>
                 <input type="button" id="top_scroller" value="Top" onclick="document.getElementById('header').scrollIntoView()"> <!-- Add a button to take the user back to the top of the page. -->
             </div>
         </div>
