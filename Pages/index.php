@@ -31,7 +31,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1"> <!-- Enable media queries & define charset -->
         <meta charset="utf-8">
         <script src="../Scripts/navigation.js"></script> <!-- Used to configure the hamburger menu -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script> <!-- The Bootstrap version 5 latest scripts -->
+        <script src="../Scripts/bootstrap.bundle.min.js"></script> <!-- The Bootstrap version 5 latest scripts -->
     </head>
 
     <body> <!-- Content in the body is visible to the user -->
