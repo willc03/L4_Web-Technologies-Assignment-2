@@ -10,10 +10,10 @@ The design requirements state that the following must apply to the assessment re
 
 ### Function (Implementation)
 
- - [ ] Communicate to a backend database service using PHP and MySQL
+ - [x] Communicate to a backend database service using PHP and MySQL
  - [ ] Allow users to sign up to the shop in order to make purchases
- - [ ] Provide latest offers from the database presented on the homepage of the web application
- - [ ] Present the shop items from the database rather than statically hardcoded inside the HTML
+ - [x] Provide latest offers from the database presented on the homepage of the web application
+ - [x] Present the shop items from the database rather than statically hardcoded inside the HTML
  - [ ] Contain a README file detailing any set up instructions (passwords for tutors to assess the work) and any decisions you've made you want the tutor to know which is evidenced in the demonstration
 
 ### Optional Extras
@@ -27,7 +27,7 @@ The design requirements state that the following must apply to the assessment re
  - [ ] Allow logged in users the functionality to leave reviews on products with average star rating and text messages
  - [ ] Store passwords security by hashing and salting using the bcrypt mechanism
  - [ ] Present dynamic information from the database responsively to meet the minimum requirements of the first assessment (responsive mobile design)
- - [ ] Use passing of POST/GET variables to access product items rather than using the sessionStorage object as preferred in assessment 1
+ - [x] Use passing of POST/GET variables to access product items rather than using the sessionStorage object as preferred in assessment 1
 
  ## The Marking Scheme
  There is a banded marking scheme, the criteria below is used as a guide with academic judgement to determine a grade
@@ -43,13 +43,13 @@ The design requirements state that the following must apply to the assessment re
 | -- | -- | -- | -- | -- | -- |
 | Follows brief | / | / | / | / | No |
 | All pages are defined with .php extension (where the PHP is either inside the HTML or as a separate file) | / | / | / | / | Yes |
-| Communicates with a backend MySQL database using PHP | / | / | / | / | No |
+| Communicates with a backend MySQL database using PHP | / | / | / | / | Yes |
 | Provides login functionality | / | / | / | / | No |
 | Provides live offers | / | / | / | / | Yes |
-| Product items are stored in the database | / | / | / | / | No |
+| Product items are stored in the database | / | / | / | / | Yes |
 | Submission includes a README.md file | / | / | / | / | No |
 | Uses sessions to detect logged in users |  | / | / | / | No |
-| Basic browse product view |  | / | / | / | No |
+| Basic browse product view |  | / | / | / | Yes |
 | Provides a personalised greeting |  | / | / | / | No |
 | Custom 404 error page |  | / | / | / | No |
 | Neatly structured code |  | / | / | / | No |
