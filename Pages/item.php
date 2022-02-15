@@ -8,7 +8,7 @@
 
 <?php
 
-    if (!isset($_POST["productid"])) // If the user has tried to access this page without selecting a product, they will be redirected to another page
+    if (!isset($_POST["product_id"])) // If the user has tried to access this page without selecting a product, they will be redirected to another page
     {
         header("Location: ./products.php"); // Send the user back to the products page.
         exit(); // End this PHP script before the function is generated to save memory.
@@ -36,8 +36,8 @@
         <link type="text/css" rel="stylesheet" href="../Stylesheets/item.css"> <!-- The unique CSS file for this page -->
         <meta name="viewport" content="width=device-width, initial-scale=1"> <!-- Enable media queries & define charset -->
         <meta charset="utf-8">
-        <script src="../Scripts/loadProducts.js"></script> <!-- Uses a JavaScript object to load item in sessionStorage. -->
         <script src="../Scripts/navigation.js"></script> <!-- Used to configure the hamburger menu -->
+        <script src="../Scripts/manageCart.js"></script> <!-- This script provides local functions for managing the cart -->
     </head>
 
     <body> <!-- Content in the body is visible to the user -->
@@ -57,6 +57,30 @@
             <div id="mobileNavigationContainer"></div>
 
             <div id="main"> <!-- The DOM will be manipulated to display content in this container. -->
+                <?php
+                    $dbConnection = getDatabaseConnection();
+                    $getProductInfo = 'SELECT * FROM products WHERE product_id="' . $_POST["product_id"] . '";'; // Search for the product in the database by the product ID.
+                    $sqlProductInfo = $dbConnection->query($getProductInfo);
+                    $productInfo = $sqlProductInfo->fetch_assoc();
+
+                    $getProductTypeInfo = 'SELECT productTypeDescription, price FROM productTypes WHERE productType="' . $productInfo["product_type"] . '";';
+                    $sqlProductTypeInfo = $dbConnection->query($getProductTypeInfo);
+                    $productTypeInfo = $sqlProductTypeInfo->fetch_assoc();
+                    $productInfo["price"] = $productTypeInfo["price"];
+                    $productInfo["description"] = $productTypeInfo["productTypeDescription"];
+
+                    // Start container
+                    echo '<div class="productContainer">'; // Display the results to the user.
+                    echo '<img src="' . $productInfo["product_image"] . '">';
+                    echo '<h2>' . $productInfo["colour"] . '</h2>';
+                    echo '<h2>' . $productInfo["product_type"] . '</h2>';
+                    echo '<p class="productDescription">' . $productInfo["description"] . '</p>';
+                    echo '<strong class="productPrice"> £' . $productInfo["price"] . '</strong>';
+                    // Create buy button
+                    echo '<input type="button" class="purchaseButton" value="Buy" onclick="addToCart(\'' . $productInfo["product_type"] . '\', \'' . $productInfo["colour"] . '\')">';
+                    // End container
+                    echo '</div>';
+                ?>
             </div>
         </div>
 
