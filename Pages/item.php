@@ -31,7 +31,7 @@
 <html lang="en"> <!-- Language is specified to increase SEO. -->
 
     <head> <!-- Content invisible to the user -->
-        <title>Home - UCLan Student's Union Shop</title> <!-- JavaScript will be used to edit the name of the tab -->
+        <title><?php echo $_POST["title"] . " - UCLan Student's Union Shop"; ?></title> <!-- PHP will be used to edit the name of the tab -->
         <link type="text/css" rel="stylesheet" href="../Stylesheets/global.css"> <!-- Style the header & footer of the page -->
         <link type="text/css" rel="stylesheet" href="../Stylesheets/item.css"> <!-- The unique CSS file for this page -->
         <meta name="viewport" content="width=device-width, initial-scale=1"> <!-- Enable media queries & define charset -->
