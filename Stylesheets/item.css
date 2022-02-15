@@ -63,7 +63,6 @@ img:not(#uclan_logo) { /* Ensure the container's image stays within the bounds *
 /* Next, define the tablet bahaviour */
 @media screen and (max-width: 768px) {
     .productContainer {
-        width: 40%;
         border: 2px solid #f3f3f3;
         background-color: #f3f3f3;
     }
