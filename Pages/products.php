@@ -22,7 +22,6 @@
 ?>
 
 <html lang="en"> <!-- Language is specified to increase SEO. -->
-
     <head> <!-- Content invisible to the user -->
         <title>Products - UCLan Student's Union Shop</title> <!-- Sets the name of the tab in the browser -->
         <link type="text/css" rel="stylesheet" href="../Stylesheets/global.css"> <!-- Style the header & footer of the page -->
@@ -32,7 +31,6 @@
         <script src="../Scripts/navigation.js"></script> <!-- Used to configure the hamburger menu -->
         <script src="../Scripts/manageCart.js"></script> <!-- This script provides local functions for managing the cart -->
     </head> 
-
     <body> <!-- Content in the body is visible to the user -->
         <div id="content">
             <div id="header"> <!-- Defines the top of the page, visible on all pages -->
@@ -48,22 +46,69 @@
                 </nav>
             </div>
             <div id="mobileNavigationContainer"></div>
-
             <div id="main">
-                <!--
-                    The below paragraph contains anchor tags which can scroll to certain points on the page by using the ID of an
-                    element which is being scrolled to, in this case, the IDs are the names of the products, and upon pressing, the
-                    browser will scroll to the top of container with such an ID.
+                <br>
+                <div id="productFilters">
+                    <form method="get" id="filterSettings"> <!-- No action is provided as the form leads to the same page -->
+                        <div id="filterSearch">
+                            <input type="search" name="productSearch" id="searchBox">
+                            <input type="submit" value="Search" id="submitFilters">
+                        </div>
+                        <br>
+                         <!-- These buttons will be used to provide filters to only show certain products-->
+                        <div id="filterButtons">
+                            <?php // Buttons to filter products will be added dynamically in the case of further product types in future.
+                                // Make all button
+                                $hasProductFilter = isset($_GET["productFilter"]);
+                                $hasSearchFilter = isset($_GET["productSearch"]);
+                                if (($hasProductFilter and $_GET["productFilter"] == "All") or (!$hasProductFilter and !$hasSearchFilter) or (!$hasProductFilter and ($hasSearchFilter and in_array($_GET["productSearch"], array("", " ")) )))
+                                {
+                                    echo '<input type="submit" name="productFilter" value="All" class="activeCategory">';
+                                }
+                                else
+                                {
+                                    echo '<input type="submit" name="productFilter" value="All" class="categoryFilter">';
+                                }
 
-                    The containers with said IDs are shown below the "quick_scroller" paragraph.
-                -->
-                <p id="quick_scroller">products > <a href="#Hoodie">hoodies</a> <a href="#Jumper">jumpers</a> <a href="#Tshirt">t-shirts</a></p>
+                                $dbConnection = getDatabaseConnection();
+                                $sqlProductTypes = "SELECT productType FROM productTypes";
+                                $sqlResult = $dbConnection->query($sqlProductTypes);
+                                if ($sqlResult and $sqlResult->num_rows > 0)
+                                {
+                                    while ($productType = $sqlResult->fetch_row())
+                                    {
+                                        if (isset($_GET["productFilter"]) and $productType[0] == $_GET["productFilter"]) 
+                                        {
+                                            echo '<input type="submit" name="productFilter" value="' . $productType[0] . '" class="activeCategory">';
+                                        }
+                                        else
+                                        {
+                                            echo '<input type="submit" name="productFilter" value="' . $productType[0] . '" class="categoryFilter">';
+                                        }
+                                    }
+                                }
+                                $dbConnection->close();
+                            ?>
+                        </div>
+                    </form>
+                </div>
                 <div id="products">
                 <?php
-                    $dbConnection = getDatabaseConnection(); // Connect to the database
+                    // Retrieve a database connection
+                    $dbConnection = getDatabaseConnection();
+                    // Get all the existing products
                     $selectProducts = "SELECT * FROM products;"; // Write a query to fetch all the products
+                    if (isset($_GET["productFilter"]) and $_GET["productFilter"] != "All") // Check if a filter button has been used
+                    {
+                        $selectProducts = "SELECT * FROM products WHERE product_type='" . $_GET["productFilter"] . "';";
+                    } 
+                    else if (isset($_GET["productSearch"])) // If no filter button has been used, use the search terms, if they exist
+                    {
+                        $selectProducts = "SELECT * FROM products WHERE (colour LIKE '%" . $_GET["productSearch"] . "%' OR product_type LIKE '%" . $_GET["productSearch"] . "%');";
+                    }
                     $sqlResult = $dbConnection->query($selectProducts); // Execute the query
 
+                    // Add the products to the display
                     if ($sqlResult and $sqlResult->num_rows > 0) // Check if the results exist
                     {
                         while ($product = $sqlResult->fetch_assoc()) // Fetch each row
@@ -93,12 +138,12 @@
                             echo '</div>';
                         }
                     }
+                    $dbConnection->close();
                 ?>
                 </div>
                 <input type="button" id="top_scroller" value="Top" onclick="document.getElementById('header').scrollIntoView()"> <!-- Add a button to take the user back to the top of the page. -->
             </div>
         </div>
-
         <footer id="footer"> <!-- Defines the bottom of the page, containing all information about the website and company. -->
             <div class="Links"> <!-- All sections are placed into containers to make flexbox consistent on all screen sizes -->
                 <h3 class="category">Links</h3>
@@ -119,5 +164,4 @@
             </div>
         </footer>
     </body>
-
 </html>
