@@ -19,7 +19,7 @@ The design requirements state that the following must apply to the assessment re
 ### Optional Extras
 
  - [ ] Use sessions to detect when a user is logged in (in order to make purchases)
- - [ ] Provide extra functionality to search for products in the shop (for example, using PHP to obtain a list of products, or searching for using text and presenting this information by updating the front-end using JS).
+ - [x] Provide extra functionality to search for products in the shop (for example, using PHP to obtain a list of products, or searching for using text and presenting this information by updating the front-end using JS).
  - [ ] Provide a personalised welcome message when a user is logged in
  - [ ] Provide user friendly feedback (when a user log in is incorrect, adding items to a basket has a problem etc)
  - [ ] Provide a user friendly 404 error page if a page is not available when accessed
@@ -58,8 +58,8 @@ The design requirements state that the following must apply to the assessment re
 | Product information page |  |  | / | / | No |
 | Submit/present reviews |  |  | / | / | No |
 | Secure passwords |  |  | / | / | No |
-| Dynamic content is response |  |  | / | / | No |
-| Advanced products search |  |  |  | / | No |
+| Dynamic content is responsive |  |  | / | / | No |
+| Advanced products search |  |  |  | / | Yes |
 | Checkout mechanism |  |  |  | / | No |
 | Little/no bugs |  |  |  | / | No |
 | Professional looking and functional web application |  |  |  | / | No |
