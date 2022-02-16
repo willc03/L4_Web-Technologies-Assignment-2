@@ -79,6 +79,51 @@ img:not(#uclan_logo) { /* Applies to all images that are not the header logo, en
     font-size: 0.8em;
 }
 /*
+    This section of CSS styles the filters
+*/
+input:focus { /* Remove the outline when an input box is selected */
+    outline: none;
+}
+#filterSettings {
+    margin: auto;
+    width: 65%;
+}
+#filterSettings input { /* Style all of the input boxes */
+    border-radius: 10px;
+    transition-duration: 0.5s;
+    height: 5vh;
+}
+#filterSearch, #filterButtons {
+    display: flex;
+    justify-content: space-between;
+}
+input[name="productFilter"] { /* Global properties on the product category buttons */
+    width: 20%;
+}
+#searchBox { /* Style the text input box for searching */
+    border-color: gray;
+    width: 70%;
+    font-size: 0.825vw;
+}
+#searchBox:focus {
+    border-color: #be1622;
+}
+#submitFilters, .categoryFilter {
+    background-color: white;
+    border-color: #be1622;
+    color: #be1622;
+    width: 20%;
+    font-size: 0.75vw;
+    white-space: normal; /* Text wrapping */
+}
+#submitFilters:hover, .activeCategory, .categoryFilter:hover {
+    background-color: #be1622;
+    border-color: white;
+    color: white;
+    font-size: 0.825vw;
+    white-space: normal;
+}
+/*
 This section of CSS will be used to style the
 button which will scroll to the top of the page
 when pressed by the end-user.
@@ -103,6 +148,9 @@ when pressed by the end-user.
 
 /* Next, define the tablet bahaviour */
 @media screen and (max-width: 768px) {
+    #filterSettings {
+        width: 100%;
+    }
     .productContainer {
         width: 40%;
     }
