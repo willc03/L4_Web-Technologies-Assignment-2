@@ -6,6 +6,7 @@ function UserAccountRequest(currentContent) {
                 window.location.href = "../Pages/login.php";
             } else {
                 document.getElementById("clearButton").innerHTML = this.responseText;
+                window.location.reload();
             }
         }
     }
