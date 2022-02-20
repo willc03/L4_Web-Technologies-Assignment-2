@@ -81,9 +81,6 @@ img:not(#uclan_logo) { /* Applies to all images that are not the header logo, en
 /*
     This section of CSS styles the filters
 */
-input:focus { /* Remove the outline when an input box is selected */
-    outline: none;
-}
 #filterSettings {
     margin: auto;
     width: 65%;
@@ -105,7 +102,7 @@ input[name="productFilter"] { /* Global properties on the product category butto
     width: 70%;
     font-size: 0.825vw;
 }
-#searchBox:focus {
+#searchBox:focus, #searchBox:hover {
     border-color: #be1622;
 }
 #submitFilters, .categoryFilter {
