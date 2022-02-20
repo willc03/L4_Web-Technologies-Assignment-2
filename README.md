@@ -18,7 +18,7 @@ The design requirements state that the following must apply to the assessment re
 
 ### Optional Extras
 
- - [ ] Use sessions to detect when a user is logged in (in order to make purchases)
+ - [x] Use sessions to detect when a user is logged in (in order to make purchases)
  - [x] Provide extra functionality to search for products in the shop (for example, using PHP to obtain a list of products, or searching for using text and presenting this information by updating the front-end using JS).
  - [ ] Provide a personalised welcome message when a user is logged in
  - [ ] Provide user friendly feedback (when a user log in is incorrect, adding items to a basket has a problem etc)
@@ -44,11 +44,11 @@ The design requirements state that the following must apply to the assessment re
 | Follows brief | / | / | / | / | No |
 | All pages are defined with .php extension (where the PHP is either inside the HTML or as a separate file) | / | / | / | / | Yes |
 | Communicates with a backend MySQL database using PHP | / | / | / | / | Yes |
-| Provides login functionality | / | / | / | / | No |
+| Provides login functionality | / | / | / | / | Yes |
 | Provides live offers | / | / | / | / | Yes |
 | Product items are stored in the database | / | / | / | / | Yes |
 | Submission includes a README.md file | / | / | / | / | No |
-| Uses sessions to detect logged in users |  | / | / | / | No |
+| Uses sessions to detect logged in users |  | / | / | / | Yes |
 | Basic browse product view |  | / | / | / | Yes |
 | Provides a personalised greeting |  | / | / | / | No |
 | Custom 404 error page |  | / | / | / | No |
