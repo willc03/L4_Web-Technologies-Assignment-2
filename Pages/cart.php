@@ -44,7 +44,16 @@
 
             <div id="main">
                 <h2>Shopping Cart</h2>
-                <p>The list below shows what you have added to your shopping cart.</p>
+                <?php
+                    if (isset($_SESSION["name"])) 
+                    {
+                        echo '<p>Welcome, ' . $_SESSION["name"] . '! You have added the following items to your cart:</p>';
+                    }
+                    else
+                    {
+                        echo '<p>The list below shows what you have added to your shopping cart.</p>';
+                    }
+                ?>
                 <br>
                 <div id="table"> <!-- A table is used to show the items in the cart. -->
                     <div class="row"> <!-- A "row" class is used on each item, and in this case, the headers of the table -->

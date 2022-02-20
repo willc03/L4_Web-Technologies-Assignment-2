@@ -35,7 +35,7 @@ the UCLan 'brand'.
       colours when hovered over to show the interaction between  the  user  and
       the website.
 */
-button {
+button:not([id="clearButton"]) {
     width: 70%;
     color: #be1622;
     border: 2px solid #be1622;
