@@ -29,6 +29,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1"> <!-- Enable media queries & define charset -->
         <meta charset="utf-8">
         <script src="../Scripts/navigation.js"></script> <!-- Used to configure the hamburger menu -->
+        <script src="../Scripts/ajaxRequests.js"></script> <!-- Ajax is used to communicate between the client and the server -->
         <script src="../Scripts/manageCart.js"></script> <!-- This script provides local functions for managing the cart -->
     </head> 
     <body> <!-- Content in the body is visible to the user -->
@@ -44,8 +45,7 @@
                     <a href="products.php">Products</a>
                     <a href="cart.php">Cart</a>
                     <?php
-                        // This will be used to change to sign out in future, after login is implemented
-                        echo '<a href="login.php">Sign in</a>';
+                        echo '<button id="clearButton" onclick="UserAccountRequest(this.innerHTML)">' . (isset($_SESSION["name"]) ? 'Log out' : 'Sign in') . '</button>';;
                     ?>
                 </nav>
             </div>

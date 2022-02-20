@@ -55,6 +55,7 @@
         <meta charset="utf-8">
         <script src="../Scripts/navigation.js"></script> <!-- Used to configure the hamburger menu -->
         <script src="../Scripts/formValidation.js"></script> <!-- Used to locally validate forms -->
+        <script src="../Scripts/ajaxRequests.js"></script> <!-- Ajax is used to communicate between the client and the server -->
         <script src="../Scripts/bootstrap.bundle.min.js"></script> <!-- The Bootstrap version 5 latest scripts -->
     </head>
 
@@ -71,8 +72,7 @@
                     <a href="products.php">Products</a>
                     <a href="cart.php">Cart</a>
                     <?php
-                        // This will be used to change to sign out in future, after login is implemented
-                        echo '<a href="login.php">Sign in</a>';
+                        echo '<button id="clearButton" onclick="UserAccountRequest(this.innerHTML)">' . (isset($_SESSION["name"]) ? 'Log out' : 'Sign in') . '</button>';;
                     ?>
                 </nav>
             </div>
