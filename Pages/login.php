@@ -7,7 +7,7 @@
 <!DOCTYPE html>
 
 <?php
-    session_start();
+    session_start(); // Allow the page to make use of the $_SESSION variable
     $doesEmailExist = true;
     if (isset($_POST["submitType"]) and $_POST["submitType"] == "Log in") // Check if the user has pressed log in
     {
@@ -31,7 +31,7 @@
         }
         else
         {
-            $doesEmailExist = false;
+            $doesEmailExist = false; // Will be used later to create error messages
         }
     }
 
@@ -123,15 +123,15 @@
                     {
                         echo '<h1 class="title">Log in</h1>';
                         echo '<p>Logging into our website will allow you to order items at the checkout.</p>';
-                        if (isset($_POST["submitType"]))
+                        if (isset($_POST["submitType"])) // Add necessary feedback for incorrect details.
                         {
                             echo '<div id="incorrectDetails">';
-                            if (!$doesEmailExist)
+                            if (!$doesEmailExist) // This variable was created in the first section of PHP
                             {
                                 echo '<h2><strong>Invalid Email</strong></h2>';
                                 echo '<p>The email you have entered could not be found. Please try re-entering your email or signing up for an account.</p>';
                             }
-                            else
+                            else // The only other possible piece of information the user can get wrong is the password
                             {
                                 echo '<h2><strong>Invalid Password</strong></h2>';
                                 echo '<p>The password you have entered is incorrect, please try again.</p>';
