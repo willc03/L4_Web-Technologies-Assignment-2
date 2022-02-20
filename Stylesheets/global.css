@@ -178,6 +178,22 @@ input:focus { /* Remove the outline when an input box is selected */
     left: -15px;
     content: "✖";
 }
+/* The login error container must be styled */
+#incorrectDetails {
+    background-color: #ffe2e0;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2.5% 0%;
+    margin-bottom: 2.5%;
+}
+#incorrectDetails h2, #incorrectDetails p {
+    width: 50%;
+    color: #be1622!important;
+    text-align: center;
+    height: auto;
+}
 
 /* Next, define the tablet bahaviour (font and image size changes) */
 @media screen and (max-width: 768px) {

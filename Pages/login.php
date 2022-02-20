@@ -8,6 +8,7 @@
 
 <?php
     session_start();
+    $doesEmailExist = true;
     if (isset($_POST["submitType"]) and $_POST["submitType"] == "Log in") // Check if the user has pressed log in
     {
         $email = $_POST["loginEmail"];
@@ -27,6 +28,10 @@
                 header("Location: ./index.php"); // Send user to home page.
                 exit(); // End this PHP script.
             }
+        }
+        else
+        {
+            $doesEmailExist = false;
         }
     }
 
@@ -118,6 +123,21 @@
                     {
                         echo '<h1 class="title">Log in</h1>';
                         echo '<p>Logging into our website will allow you to order items at the checkout.</p>';
+                        if (isset($_POST["submitType"]))
+                        {
+                            echo '<div id="incorrectDetails">';
+                            if (!$doesEmailExist)
+                            {
+                                echo '<h2><strong>Invalid Email</strong></h2>';
+                                echo '<p>The email you have entered could not be found. Please try re-entering your email or signing up for an account.</p>';
+                            }
+                            else
+                            {
+                                echo '<h2><strong>Invalid Password</strong></h2>';
+                                echo '<p>The password you have entered is incorrect, please try again.</p>';
+                            }
+                            echo '</div>';
+                        }
                         echo '<form method="post" class="loginForm">';
                         echo '<label for="loginEmail">Email: </label><br>';
                         echo '<input type="email" name="loginEmail" required><br>';
