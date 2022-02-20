@@ -43,6 +43,10 @@
                     <a href="index.php">Home</a>
                     <a href="products.php">Products</a>
                     <a href="cart.php">Cart</a>
+                    <?php
+                        // This will be used to change to sign out in future, after login is implemented
+                        echo '<a href="login.php">Sign in</a>';
+                    ?>
                 </nav>
             </div>
             <div id="mobileNavigationContainer"></div>
