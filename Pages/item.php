@@ -7,7 +7,7 @@
 <!DOCTYPE html>
 
 <?php
-
+    session_start();
     if (!isset($_POST["product_id"])) // If the user has tried to access this page without selecting a product, they will be redirected to another page
     {
         header("Location: ./products.php"); // Send the user back to the products page.

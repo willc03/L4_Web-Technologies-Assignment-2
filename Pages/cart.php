@@ -5,6 +5,11 @@
     Description: Displays the user's currently selected items.
 -->
 <!DOCTYPE html>
+
+<?php
+    session_start();
+?>
+
 <html lang="en"> <!-- Language is specified to increase SEO. -->
 
     <head> <!-- Content invisible to the user -->

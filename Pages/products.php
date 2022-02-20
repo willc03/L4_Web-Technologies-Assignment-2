@@ -7,6 +7,7 @@
 <!DOCTYPE html>
 
 <?php
+    session_start();
     function getDatabaseConnection()
     {
         $dbServerName = "localhost";
