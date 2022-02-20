@@ -70,7 +70,7 @@ nav {
     display: flex;
     justify-content: space-around; /* Equally space items in the navigation menu */
     align-items: center;
-    width: 20%;
+    width: 30%;
     height: 100%;
     margin-right: 2.5%;
 }
@@ -89,6 +89,94 @@ nav a, nav a:hover { /* Set behaviour of links (exclusively in the navigation me
 a { /* Set the colour of all hyperlinks to the colour specified in the design requirements document */
     color: #007fb0;
 }
+input:focus { /* Remove the outline when an input box is selected */
+    outline: none;
+}
+
+/* Login form */
+#signup, #passwordContainer, .loginForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#signup label, .loginForm label {
+    box-sizing: border-box;
+    text-align: center;
+}
+
+#signup input, .loginForm input {
+    border-width: 3px;
+    border-color: gray;
+    border-radius: 10px;
+    font-size: 1em;
+    text-align: center;
+    white-space: normal;
+    height: 35px;
+    transition-duration: 0.5s;
+    width: 75%;
+}
+#signup input[name="address"] {
+    height: 100px;
+}
+#signup input:hover, #signup input:focus, .loginForm input:hover, .loginForm input:focus {
+    border-color: #be1622;
+}
+#signup input[type="submit"], .loginForm input[type="submit"] {
+    background-color: white;
+    border-color: #be1622;
+    color: #be1622;
+    width: 20%;
+    white-space: normal; /* Text wrapping */
+    height: auto;
+}
+#signup input[type="submit"]:disabled, .loginForm input[id="loginButton"]:disabled {
+    background-color: white;
+    border-color: gray;
+    color: gray;
+}
+#signup input[type="submit"]:hover:not(:disabled), .loginForm input[id="signUpButton"]:hover, .loginForm input[id="loginButton"]:hover:not(:disabled) {
+    background-color: #be1622;
+    border-color: white;
+    color: white;
+    white-space: normal;
+}
+#passwordContainer {
+    width: 100%;
+}
+.requirements {
+    margin: 0px;
+    text-align: center;
+}
+#passwordRequirements {
+    margin-top: 2.5%;
+    list-style-type: none;
+    background-color: lightgray;
+    border-radius: 5px;
+    width: 65%;
+    padding: 10px;
+}
+#passwordRequirements li {
+    text-align: center;
+    white-space: normal;
+}
+/* Add characters based on whether the password requirements are met */
+.valid {
+    color: green;
+}
+.valid:before {
+    position: relative;
+    left: -15px;
+    content: "✔";
+}
+.invalid {
+    color: #be1622;
+}
+.invalid:before {
+    position: relative;
+    left: -15px;
+    content: "✖";
+}
 
 /* Next, define the tablet bahaviour (font and image size changes) */
 @media screen and (max-width: 768px) {
@@ -106,6 +194,9 @@ a { /* Set the colour of all hyperlinks to the colour specified in the design re
     }
     footer {
         font-size: 0.75em; /* Reduce the size of the font on tablets */
+    }
+    #passwordRequirements li {
+        font-size: 1.5vw;
     }
 }
 

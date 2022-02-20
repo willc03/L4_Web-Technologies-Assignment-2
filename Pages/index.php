@@ -7,6 +7,7 @@
 <!DOCTYPE html>
 
 <?php
+    session_start();
     function getDatabaseConnection()
     {
         $dbServerName = "localhost";
@@ -47,8 +48,14 @@
                     <a href="products.php">Products</a>
                     <a href="cart.php">Cart</a>
                     <?php
-                        // This will be used to change to sign out in future, after login is implemented
-                        echo '<a href="login.php">Sign in</a>';
+                        if (isset($_SESSION["name"]))
+                        {
+                            echo '<button class="signout">Sign out</button>';
+                        }
+                        else
+                        {
+                            echo '<a href="login.php">Sign in</a>';
+                        }
                     ?>
                 </nav>
             </div>
