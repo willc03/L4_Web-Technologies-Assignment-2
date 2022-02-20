@@ -14,16 +14,16 @@
         $password = $_POST["loginPassword"];
         
         $dbConnection = getDatabaseConnection();
-        $sqlGetLoginInfo = "SELECT user_name, user_pass FROM users WHERE user_email='" . $email . "';";
+        $sqlGetLoginInfo = "SELECT user_full_name, user_pass FROM users WHERE user_email='" . $email . "';";
 
         $loginQuery = $dbConnection->query($sqlGetLoginInfo);
         if ($loginQuery and $loginQuery->num_rows > 0)
         {
             $userDetails = $loginQuery->fetch_assoc();
             $hashedPassword = $userDetails["user_pass"];
-            if (password_verify($password, $hashedPassword))
+            if (password_verify($password, $hashedPassword) == true)
             {
-                $_SESSION["name"] = $userDetails["user_name"];
+                $_SESSION["name"] = $userDetails["user_full_name"];
                 header("Location: ./index.php"); // Send user to home page.
                 exit(); // End this PHP script.
             }
@@ -86,13 +86,18 @@
                         echo '<form method="post" id="signup">';
                         echo '<label for="fullName">Full name: </label><br>';
                         echo '<input type="text" name="fullName" required><br>';
+
                         echo '<label for="email">Email: </label><br>';
                         echo '<input type="email" name="email" required><br>';
+
                         echo '<label for="address">Address: </label><br>';
                         echo '<input type="text" name="address" required>';
+
                         echo '<div id="passwordContainer">';
+
                         echo '<br><label for="password">Password: </label>';
                         echo '<input type="password" name="password" id="password" minlength="8" required>';
+
                         echo '<ul id="passwordRequirements">';
                         echo '<p class="requirements">Password requirements:</p><br>';
                         echo '<li class="invalid" id="length">Contain at least 8 characters</li>';
@@ -101,10 +106,12 @@
                         echo '<li class="invalid" id="number">Contain at least 1 number</li>';
                         echo '<li class="invalid" id="special">Contain at least 1 special character</li>';
                         echo '</ul><br>';
+
                         echo '<label for="confirmPassword">Confirm password: </label><br>';
                         echo '<input type="password" name="confirmPassword" required>';
+
                         echo '</div><br>';
-                        echo '<input type="submit" name="Sign Up" disabled>';
+                        echo '<input type="submit" name="Sign Up">';
                         echo '</form>';
                     }
                     else // If the user has loaded the page for the first time or has pressed log in

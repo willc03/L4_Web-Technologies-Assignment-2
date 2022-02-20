@@ -84,6 +84,12 @@ nav a, nav a:hover { /* Set behaviour of links (exclusively in the navigation me
     text-decoration: none; /* Remove the underlines, usually imposed by browsers by default */
     font-size: 1.2vw;
 }
+#clearButton {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.2vw;
+}
 
 /* Other global features */
 a { /* Set the colour of all hyperlinks to the colour specified in the design requirements document */
@@ -130,12 +136,7 @@ input:focus { /* Remove the outline when an input box is selected */
     white-space: normal; /* Text wrapping */
     height: auto;
 }
-#signup input[type="submit"]:disabled, .loginForm input[id="loginButton"]:disabled {
-    background-color: white;
-    border-color: gray;
-    color: gray;
-}
-#signup input[type="submit"]:hover:not(:disabled), .loginForm input[id="signUpButton"]:hover, .loginForm input[id="loginButton"]:hover:not(:disabled) {
+#signup input[type="submit"]:hover, .loginForm input[id="signUpButton"]:hover {
     background-color: #be1622;
     border-color: white;
     color: white;
