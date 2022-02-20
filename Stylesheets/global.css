@@ -152,7 +152,7 @@ input:focus { /* Remove the outline when an input box is selected */
 #passwordRequirements {
     margin-top: 2.5%;
     list-style-type: none;
-    background-color: lightgray;
+    background-color: #e3e3e3;
     border-radius: 5px;
     width: 65%;
     padding: 10px;
@@ -178,9 +178,20 @@ input:focus { /* Remove the outline when an input box is selected */
     left: -15px;
     content: "✖";
 }
-/* The login error container must be styled */
+/* The login error and new account containers must be styled */
+#newAccount {
+    background-color: #e1ffe0;
+}
 #incorrectDetails {
     background-color: #ffe2e0;
+}
+#incorrectDetails h2, #incorrectDetails p {
+    color: #be1622!important;
+}
+#newAccount h2, #newAccount p {
+    color: #035e00!important;
+}
+#newAccount, #incorrectDetails {
     border-radius: 5px;
     display: flex;
     flex-direction: column;
@@ -188,9 +199,8 @@ input:focus { /* Remove the outline when an input box is selected */
     padding: 2.5% 0%;
     margin-bottom: 2.5%;
 }
-#incorrectDetails h2, #incorrectDetails p {
+#incorrectDetails h2, #incorrectDetails p, #newAccount h2, #newAccount p {
     width: 50%;
-    color: #be1622!important;
     text-align: center;
     height: auto;
 }

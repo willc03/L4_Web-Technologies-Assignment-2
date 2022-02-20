@@ -11,7 +11,7 @@ The design requirements state that the following must apply to the assessment re
 ### Function (Implementation)
 
  - [x] Communicate to a backend database service using PHP and MySQL
- - [ ] Allow users to sign up to the shop in order to make purchases
+ - [x] Allow users to sign up to the shop in order to make purchases
  - [x] Provide latest offers from the database presented on the homepage of the web application
  - [x] Present the shop items from the database rather than statically hardcoded inside the HTML
  - [ ] Contain a README file detailing any set up instructions (passwords for tutors to assess the work) and any decisions you've made you want the tutor to know which is evidenced in the demonstration
@@ -23,9 +23,9 @@ The design requirements state that the following must apply to the assessment re
  - [x] Provide a personalised welcome message when a user is logged in
  - [x] Provide user friendly feedback (when a user log in is incorrect, adding items to a basket has a problem etc)
  - [ ] Provide a user friendly 404 error page if a page is not available when accessed
- - [ ] Provide a means to register new users to the shop
+ - [x] Provide a means to register new users to the shop
  - [ ] Allow logged in users the functionality to leave reviews on products with average star rating and text messages
- - [ ] Store passwords security by hashing and salting using the bcrypt mechanism
+ - [x] Store passwords security by hashing and salting using the bcrypt mechanism
  - [ ] Present dynamic information from the database responsively to meet the minimum requirements of the first assessment (responsive mobile design)
  - [x] Use passing of POST/GET variables to access product items rather than using the sessionStorage object as preferred in assessment 1
 
@@ -53,11 +53,11 @@ The design requirements state that the following must apply to the assessment re
 | Provides a personalised greeting |  | / | / | / | Yes |
 | Custom 404 error page |  | / | / | / | No |
 | Neatly structured code |  | / | / | / | No |
-| User registration |  |  | / | / | No |
+| User registration |  |  | / | / | Yes |
 | Calculated product reviews |  |  | / | / | No |
 | Product information page |  |  | / | / | No |
 | Submit/present reviews |  |  | / | / | No |
-| Secure passwords |  |  | / | / | No |
+| Secure passwords |  |  | / | / | Yes |
 | Dynamic content is responsive |  |  | / | / | No |
 | Advanced products search |  |  |  | / | Yes |
 | Checkout mechanism |  |  |  | / | No |

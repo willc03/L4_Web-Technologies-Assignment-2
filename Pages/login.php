@@ -8,7 +8,6 @@
 
 <?php
     session_start(); // Allow the page to make use of the $_SESSION variable
-    $doesEmailExist = true;
     if (isset($_POST["submitType"]) and $_POST["submitType"] == "Log in") // Check if the user has pressed log in
     {
         $email = $_POST["loginEmail"];
@@ -32,6 +31,31 @@
         else
         {
             $doesEmailExist = false; // Will be used later to create error messages
+        }
+    }
+    if (isset($_POST["submitType"]) and $_POST["submitType"] == "Sign Up")
+    {
+        $dbConnection = getDatabaseConnection();
+        // Check if the email is already in the database
+        $email = $_POST["email"];
+        $sqlGetExistingEmail = "SELECT COUNT(user_id) FROM users WHERE user_email='" . $email . "';";
+        $getEmailQuery = $dbConnection->query($sqlGetExistingEmail);
+        if ($getEmailQuery and $getEmailQuery->num_rows > 0 and $getEmailQuery->fetch_row()[0] > 0)
+        {
+            $emailAlreadyExists = true;
+        }
+        else
+        {
+            echo "checking new accountage";
+            // Get the next increment
+            $sqlGetNextAvailableUserId = "SELECT auto_increment FROM INFORMATION_SCHEMA.TABLES WHERE table_name = 'users';";
+            $nextUserId = ($dbConnection->query($sqlGetNextAvailableUserId))->fetch_row()[0]; // Get the next value
+            // Add the user info
+            $dateTime = new DateTime();
+            $currentTime = $dateTime->format('Y-m-d H:i:s');
+            $sqlInsertNewUserCredentials = "INSERT INTO users (user_id, user_full_name, user_address, user_email, user_pass, user_timestamp) VALUES (" . $nextUserId . ", '" . $_POST["fullName"] . "', '" . $_POST["address"] . "', '" . $_POST["email"] . "', '" . password_hash($_POST["password"], PASSWORD_BCRYPT) . "', '" . $currentTime . "');";
+            $dbConnection->query($sqlInsertNewUserCredentials);
+            $newAccount = true;
         }
     }
 
@@ -85,9 +109,16 @@
             
             <div id="main"> <!-- Defines the main content of the page, below the header, above the footer. -->
                 <?php
-                    if (isset($_POST["submitType"]) and $_POST["submitType"] == "Sign up for an account") // If the user has pressed sign up
+                    if ((!isset($newAccount)) and (isset($_POST["submitType"]) and in_array($_POST["submitType"], array("Sign up here", "Sign Up")))) // If the user has pressed sign up
                     {
                         echo '<br><h2 class="sub_title">Sign Up</h2><br>';
+                        if (isset($emailAlreadyExists))
+                        {
+                            echo '<div id="incorrectDetails">';
+                            echo '<h2><strong>Email in use</strong></h2>';
+                            echo '<p>The email entered is already registered to an account on our website. Please try again.</p>';
+                            echo '</div>';
+                        }
                         echo '<form method="post" id="signup">';
                         echo '<label for="fullName">Full name: </label><br>';
                         echo '<input type="text" name="fullName" required><br>';
@@ -101,7 +132,7 @@
                         echo '<div id="passwordContainer">';
 
                         echo '<br><label for="password">Password: </label>';
-                        echo '<input type="password" name="password" id="password" minlength="8" required>';
+                        echo '<input type="password" name="password" id="password" minlength="8" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required>';
 
                         echo '<ul id="passwordRequirements">';
                         echo '<p class="requirements">Password requirements:</p><br>';
@@ -109,24 +140,30 @@
                         echo '<li class="invalid" id="uppercase">Contain at least 1 upper-case character</li>';
                         echo '<li class="invalid" id="lowercase">Contain at least 1 lower-case character</li>';
                         echo '<li class="invalid" id="number">Contain at least 1 number</li>';
-                        echo '<li class="invalid" id="special">Contain at least 1 special character</li>';
                         echo '</ul><br>';
 
                         echo '<label for="confirmPassword">Confirm password: </label><br>';
-                        echo '<input type="password" name="confirmPassword" required>';
+                        echo '<input type="password" name="confirmPassword" id="confirmPassword" required>';
 
                         echo '</div><br>';
-                        echo '<input type="submit" name="Sign Up">';
+                        echo '<input type="submit" value="Sign Up" name="submitType">';
                         echo '</form>';
                     }
                     else // If the user has loaded the page for the first time or has pressed log in
                     {
                         echo '<h1 class="title">Log in</h1>';
                         echo '<p>Logging into our website will allow you to order items at the checkout.</p>';
-                        if (isset($_POST["submitType"])) // Add necessary feedback for incorrect details.
+                        if (isset($newAccount))
+                        {
+                            echo '<div id="newAccount">';
+                            echo '<h2><strong>Account Created</strong></h2>';
+                            echo '<p>Your account has been successfully created. Please log in using the form below.</p>';
+                            echo '</div>';
+                        }
+                        else if (isset($_POST["submitType"])) // Add necessary feedback for incorrect details.
                         {
                             echo '<div id="incorrectDetails">';
-                            if (!$doesEmailExist) // This variable was created in the first section of PHP
+                            if (isset($doesEmailExist) and !$doesEmailExist) // This variable was created in the first section of PHP
                             {
                                 echo '<h2><strong>Invalid Email</strong></h2>';
                                 echo '<p>The email you have entered could not be found. Please try re-entering your email or signing up for an account.</p>';
@@ -147,7 +184,7 @@
                         echo '<label for="signUp">Don\'t have an account?</label>';
                         echo '</form>';
                         echo '<form method="post" class="loginForm">';
-                        echo '<input type="submit" name="submitType" value="Sign up for an account" id="signUpButton">';
+                        echo '<input type="submit" name="submitType" value="Sign up here" id="signUpButton">';
                         echo '</form>';
                     }
                 ?>

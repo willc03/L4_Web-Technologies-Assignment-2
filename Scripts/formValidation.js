@@ -13,6 +13,7 @@ window.onload = function()
     {
         // Get password element
         let password = document.getElementById("password");
+        let confirmPassword = document.getElementById("confirmPassword");
         // Get different criteria elements
         let criteria = 
         {
@@ -72,19 +73,21 @@ window.onload = function()
                 criteria.number.classList.remove("valid");
                 criteria.number.classList.add("invalid");
             }
-            // Validate a special character
-            var specialCharacterRegex = /[!@£$%^&*()+=,<.>/?:;"'|±§]/g;
-            if (currentPassword.match(specialCharacterRegex))
+        };
+        // Check if passwords match
+        function getMatchingPassword()
+        {
+            if (password.value != confirmPassword.value)
             {
-                criteria.special.classList.remove("invalid");
-                criteria.special.classList.add("valid");
+                confirmPassword.setCustomValidity("Your passwords don't match! Please try again.");
             }
             else
             {
-                criteria.special.classList.remove("valid");
-                criteria.special.classList.add("invalid");
+                confirmPassword.setCustomValidity("");
             }
-        };
+        }
+        password.onchange = getMatchingPassword;
+        confirmPassword.onkeyup = getMatchingPassword;
     }
 
 };
