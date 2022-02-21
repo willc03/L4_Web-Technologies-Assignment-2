@@ -55,7 +55,7 @@ The design requirements state that the following must apply to the assessment re
 | Neatly structured code |  | / | / | / | No |
 | User registration |  |  | / | / | Yes |
 | Calculated product reviews |  |  | / | / | No |
-| Product information page |  |  | / | / | No |
+| Product information page |  |  | / | / | Yes |
 | Submit/present reviews |  |  | / | / | No |
 | Secure passwords |  |  | / | / | Yes |
 | Dynamic content is responsive |  |  | / | / | No |
