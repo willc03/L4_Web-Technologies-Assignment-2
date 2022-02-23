@@ -22,7 +22,7 @@ The design requirements state that the following must apply to the assessment re
  - [x] Provide extra functionality to search for products in the shop (for example, using PHP to obtain a list of products, or searching for using text and presenting this information by updating the front-end using JS).
  - [x] Provide a personalised welcome message when a user is logged in
  - [x] Provide user friendly feedback (when a user log in is incorrect, adding items to a basket has a problem etc)
- - [ ] Provide a user friendly 404 error page if a page is not available when accessed
+ - [x] Provide a user friendly 404 error page if a page is not available when accessed
  - [x] Provide a means to register new users to the shop
  - [ ] Allow logged in users the functionality to leave reviews on products with average star rating and text messages
  - [x] Store passwords security by hashing and salting using the bcrypt mechanism
@@ -51,10 +51,10 @@ The design requirements state that the following must apply to the assessment re
 | Uses sessions to detect logged in users |  | / | / | / | Yes |
 | Basic browse product view |  | / | / | / | Yes |
 | Provides a personalised greeting |  | / | / | / | Yes |
-| Custom 404 error page |  | / | / | / | No |
+| Custom 404 error page |  | / | / | / | Yes |
 | Neatly structured code |  | / | / | / | No |
 | User registration |  |  | / | / | Yes |
-| Calculated product reviews |  |  | / | / | No |
+| Calculated product reviews |  |  | / | / | Yes |
 | Product information page |  |  | / | / | Yes |
 | Submit/present reviews |  |  | / | / | No |
 | Secure passwords |  |  | / | / | Yes |
