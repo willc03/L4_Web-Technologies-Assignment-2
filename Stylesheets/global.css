@@ -92,6 +92,16 @@ nav a, nav a:hover { /* Set behaviour of links (exclusively in the navigation me
     cursor: pointer;
 }
 
+/* Style the 404 page */
+#error_container {
+    width: 60%;
+    margin: 2.5% auto;
+    padding: 10px;
+    background-color: #ffe2e0;
+    color: #be1622;
+    border-radius: 5px;
+}
+
 /* Other global features */
 a { /* Set the colour of all hyperlinks to the colour specified in the design requirements document */
     color: #007fb0;
