@@ -89,6 +89,7 @@ nav a, nav a:hover { /* Set behaviour of links (exclusively in the navigation me
     border: none;
     color: white;
     font-size: 1.2vw;
+    cursor: pointer;
 }
 
 /* Other global features */
