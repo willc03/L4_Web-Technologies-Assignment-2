@@ -88,10 +88,6 @@ img:not(#uclan_logo) { /* Ensure the container's image stays within the bounds *
     background-color: #be1622;
     color: white;
 }
-/* The next section is used to add a break in the content after the 'Read more...' text */
-.new_line::after { /* (Edpresso Team, n.d.) regarding line-break */
-    content: "\a\a";
-    white-space: pre;
 }
 
 /* Next, define the tablet bahaviour */

@@ -65,10 +65,6 @@ img:not(#uclan_logo) { /* Applies to all images that are not the header logo, en
     background-color: #be1622;
     color: white;
 }
-.new_line::after { /* (Edpresso Team, n.d.) regarding CSS line-break */
-    content: "\a\a";
-    white-space: pre;
-}
 .read_more {
     background: none;
     border: none;

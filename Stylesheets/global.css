@@ -98,6 +98,10 @@ a { /* Set the colour of all hyperlinks to the colour specified in the design re
 input:focus { /* Remove the outline when an input box is selected */
     outline: none;
 }
+.new_line::after { /* (Edpresso Team, n.d.) regarding CSS line-break */
+    content: "\a\a";
+    white-space: pre;
+}
 
 /* Login form */
 #signup, #passwordContainer, .loginForm {
