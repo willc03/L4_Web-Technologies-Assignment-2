@@ -123,9 +123,28 @@
                     echo '<hr><h2><strong>Write a review</strong></h2>';
                     if (isset($_SESSION["name"]))
                     {
-                        // Add content to allow the user to submit a review in future
+                        echo '<form method="post" id="write_review">';
+                        echo '<label for="review_title"><strong>Title:</strong></label><br>';
+                        echo '<input type="text" name="review_title" maxlength="255" required>';
+                        echo '<br><br><label><strong>Rating:</strong></label><br>';
+                        // Add rating buttons
+                        echo '<input type="radio" name="rating" value="5" required>';
+                        echo '<label>Excellent</label><br>';
+                        echo '<input type="radio" name="rating" value="4">';
+                        echo '<label>Good</label><br>';
+                        echo '<input type="radio" name="rating" value="3">';
+                        echo '<label>Average</label><br>';
+                        echo '<input type="radio" name="rating" value="2">';
+                        echo '<label>Poor</label><br>';
+                        echo '<input type="radio" name="rating" value="1">';
+                        echo '<label>Awful</label><br><br>';
+                        echo '<label for="review_description"><strong>Description:</strong></label><br>';
+                        echo '<input type="text" name="review_description" required><br><br>';
+                        echo '<input type="hidden" name="product_id" value="' . $_POST["product_id"] . '">';
+                        echo '<input type="submit" value="Submit review">';
+                        echo '</form>';
                     }
-                    else
+                    else // If the user is not logged in, they will have to log in before they can submit a review
                     {
                         echo "<p>Log in <a href='login.php'>here</a> to submit a review.</p>";
                     }
