@@ -88,6 +88,32 @@ img:not(#uclan_logo) { /* Ensure the container's image stays within the bounds *
     background-color: #be1622;
     color: white;
 }
+
+/* This section of CSS will be used to style the form used to leave a review */
+#write_review input {
+    border: #005177 2px solid;
+    border-radius: 5px;
+}
+#write_review input[type="text"] {
+    height: 35px; /* Relative measurements cannot be used in this instance, media queries will be used to optimise the size to smaller devices */
+    font-size: large;
+    width: 100%;
+}
+#write_review input[name="review_description"] {
+    height: 80px;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+#write_review input[type="submit"] {
+    background-color: white;
+    font-size: medium;
+    height: auto;
+    width: auto;
+    transition-duration: 0.5s;
+}
+#write_review input[type="submit"]:hover {
+    background-color: #005177;
+    color: white;
 }
 
 /* Next, define the tablet bahaviour */
