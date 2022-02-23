@@ -11,8 +11,10 @@
     if (!isset($_POST["product_id"])) // If the user has tried to access this page without selecting a product, they will be redirected to another page
     {
         header("Location: ./products.php"); // Send the user back to the products page.
-        exit(); // End this PHP script before the function is generated to save memory.
+        exit(); // End this PHP script
     }
+
+    $ratings = array("Awful", "Poor", "Average", "Good", "Excellent"); // Ratings will be used when displaying reviews
 
     function getDatabaseConnection()
     {
@@ -84,6 +86,49 @@
                     echo '<input type="button" class="purchaseButton" value="Buy" onclick="addToCart(\'' . $productInfo["product_type"] . '\', \'' . $productInfo["colour"] . '\')">';
                     // End container
                     echo '</div>';
+                ?>
+            </div>
+            <div id="reviews">
+                <h2><strong>Reviews</strong></h2>
+                <?php
+                    $dbConnection = getDatabaseConnection();
+                    // Present existing reviews
+                    $sqlGetReviewCount = "SELECT COUNT(review_id) FROM reviews WHERE product_id='" . $productInfo["product_id"] . "';";
+                    $getReviewCountQuery = $dbConnection->query($sqlGetReviewCount);
+                    $numberReviews = $getReviewCountQuery->fetch_row()[0];
+
+                    if ($numberReviews == 0)
+                    {
+                        echo '<p>There are no reviews for this product!</p>';
+                    }
+                    else
+                    {
+                        $sqlGetAverageProductRating = "SELECT SUM(review_rating)/COUNT(review_id) FROM reviews WHERE product_id='" . $productInfo["product_id"] . "';";
+                        $getAverageRatingQuery = $dbConnection->query($sqlGetAverageProductRating);
+                        echo '<h2>Average product rating: ' . round($getAverageRatingQuery->fetch_row()[0], 2) . ' / 5</h2>';
+                        $sqlGetReviews = "SELECT review_title, review_desc, review_rating FROM reviews WHERE product_id='" . $productInfo["product_id"] . "';";
+                        $getReviewsQuery = $dbConnection->query($sqlGetReviews);
+                        echo '<div id="userReviews">';
+                        while ($result = $getReviewsQuery->fetch_assoc()) // Get each row and make a review container for each
+                        {
+                            echo '<div class="reviewContainer">';
+                            echo '<h3>' . $result["review_title"] . '</h3>';
+                            echo '<p class="review_rating">' . $ratings[$result["review_rating"]-1] . ' (' . $result["review_rating"] . '/5)</p>';
+                            echo '<p class="review_description">' . $result["review_desc"] . '</p>';
+                            echo '</div>';
+                        }
+                        echo '</div>';
+                    }
+                    // Allow users to submit reviews if logged in
+                    echo '<hr><h2><strong>Write a review</strong></h2>';
+                    if (isset($_SESSION["name"]))
+                    {
+                        // Add content to allow the user to submit a review in future
+                    }
+                    else
+                    {
+                        echo "<p>Log in <a href='login.php'>here</a> to submit a review.</p>";
+                    }
                 ?>
             </div>
         </div>

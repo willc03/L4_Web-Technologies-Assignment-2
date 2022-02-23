@@ -7,10 +7,45 @@
 img:not(#uclan_logo) { /* Ensure the container's image stays within the bounds */
     width: 100%;
 }
-#main { /* Make a single column in the centre of the page to place all main content */
+#main, #reviews { /* Make a single column in the centre of the page to place all main content */
     width: 60%;
-    margin: auto;
+    margin: 2.5% auto;
+}
+#reviews {
+    background-color: #e0efff;
+    border-radius: 5px;
+    padding: 10px;
+}
+#reviews * {
+    color: #005177;
+}
+#reviews:first-child {
+    margin-top: 0px;
+}
+#reviews:last-child {
+    margin-bottom: 0px;
+}
+#userReviews {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.reviewContainer {
+    border: 2px solid #005177;
+    border-radius: 5px;
+    padding: 5px;
     margin-bottom: 2.5%;
+    width: 100%;
+}
+.reviewContainer h3 {
+    margin: 0px;
+}
+.review_rating {
+    margin-top: 0%;
+}
+.review_description {
+    text-align: justify;
 }
 #main a {
     font-size: 0.8em;
@@ -19,7 +54,6 @@ img:not(#uclan_logo) { /* Ensure the container's image stays within the bounds *
 /* Set the style of the product containers */
 .productContainer {
     width: 100%;
-    margin: 1.5%;
     border: 2px solid #f3f3f3;
     background-color: #f3f3f3;
 }
