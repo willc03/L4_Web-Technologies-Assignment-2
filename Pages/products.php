@@ -80,6 +80,23 @@
             <div id="mobileNavigationContainer"></div>
             <div id="main">
                 <br>
+                <?php
+                    if (isset($_GET["review_success"]))
+                    {
+                        echo '<div id="review_state" class="' . $_GET["review_success"] . '">';
+                        if ($_GET["review_success"] == "true")
+                        {
+                            echo '<h2><strong>Review submitted successfully</strong></h2>';
+                            echo '<p>Your product review has been successfully submitted, thank you!</p>';
+                        }
+                        else
+                        {
+                            echo '<h2><strong>Review couldn\'t be submitted</strong></h2>';
+                            echo '<p>There was an error submitting your review, please try again.</p>';
+                        }
+                        echo '</div>';
+                    }
+                ?>
                 <div id="productFilters">
                     <form method="get" id="filterSettings"> <!-- No action is provided as the form leads to the same page -->
                         <div id="filterSearch">
