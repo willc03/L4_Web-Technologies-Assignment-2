@@ -219,6 +219,23 @@ input:focus { /* Remove the outline when an input box is selected */
     text-align: center;
     height: auto;
 }
+/* Style the review success notice on the products page */
+#review_state {
+    margin: auto;
+    width: 60%;
+    padding: 10px;
+    margin-bottom: 2.5%;
+    text-align: center;
+    border-radius: 5px;
+}
+#review_state[class="true"] {
+    background-color: #e1ffe0;
+    color: #035e00;
+}
+#review_state[class="false"] {
+    background-color: #ffe2e0;
+    color: #be1622;
+}
 
 /* Next, define the tablet bahaviour (font and image size changes) */
 @media screen and (max-width: 768px) {
