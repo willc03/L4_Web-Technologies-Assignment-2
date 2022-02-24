@@ -123,7 +123,7 @@
                     echo '<hr><h2><strong>Write a review</strong></h2>';
                     if (isset($_SESSION["name"]))
                     {
-                        echo '<form method="post" id="write_review">';
+                        echo '<form method="post" id="write_review" action="products.php">';
                         echo '<label for="review_title"><strong>Title:</strong></label><br>';
                         echo '<input type="text" name="review_title" maxlength="255" required>';
                         echo '<br><br><label><strong>Rating:</strong></label><br>';
