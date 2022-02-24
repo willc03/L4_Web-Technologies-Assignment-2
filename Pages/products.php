@@ -131,10 +131,10 @@
                             echo '<h2>' . $product["product_type"] . '</h2>';
                             echo '<p class="productDescription">' . $productDescription . '</p>';
                             // A small form will be used to redirect the user when they press read more
-                            echo '<form action="item.php" method="post">';
+                            echo '<form action="item.php" method="get">';
                             echo '<input type="hidden" name="product_id" id="product_id" value="' . $product["product_id"] . '">';
                             echo '<input type="hidden" name="title" id="title" value="' . $product["colour"] . ' ' . $product["product_type"] . '">';
-                            echo '<input class="new_line read_more" type="submit" name="readMoreClick" value="Read more...">';
+                            echo '<input class="new_line read_more" type="submit" value="Read more...">';
                             echo '</form>'; // End form
                             echo '<strong class="productPrice"> £' . $productPrice . '</strong>';
                             // Create buy button
