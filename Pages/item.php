@@ -8,7 +8,7 @@
 
 <?php
     session_start();
-    if (!isset($_POST["product_id"])) // If the user has tried to access this page without selecting a product, they will be redirected to another page
+    if (!isset($_GET["product_id"])) // If the user has tried to access this page without selecting a product, they will be redirected to another page
     {
         header("Location: ./products.php"); // Send the user back to the products page.
         exit(); // End this PHP script
@@ -33,7 +33,7 @@
 <html lang="en"> <!-- Language is specified to increase SEO. -->
 
     <head> <!-- Content invisible to the user -->
-        <title><?php echo $_POST["title"] . " - UCLan Student's Union Shop"; ?></title> <!-- PHP will be used to edit the name of the tab -->
+        <title><?php echo $_GET["title"] . " - UCLan Student's Union Shop"; ?></title> <!-- PHP will be used to edit the name of the tab -->
         <link type="text/css" rel="stylesheet" href="../Stylesheets/global.css"> <!-- Style the header & footer of the page -->
         <link type="text/css" rel="stylesheet" href="../Stylesheets/item.css"> <!-- The unique CSS file for this page -->
         <meta name="viewport" content="width=device-width, initial-scale=1"> <!-- Enable media queries & define charset -->
@@ -65,7 +65,7 @@
             <div id="main"> <!-- The DOM will be manipulated to display content in this container. -->
                 <?php
                     $dbConnection = getDatabaseConnection();
-                    $getProductInfo = 'SELECT * FROM products WHERE product_id="' . $_POST["product_id"] . '";'; // Search for the product in the database by the product ID.
+                    $getProductInfo = 'SELECT * FROM products WHERE product_id="' . $_GET["product_id"] . '";'; // Search for the product in the database by the product ID.
                     $sqlProductInfo = $dbConnection->query($getProductInfo);
                     $productInfo = $sqlProductInfo->fetch_assoc();
 
@@ -140,7 +140,7 @@
                         echo '<label>Awful</label><br><br>';
                         echo '<label for="review_description"><strong>Description:</strong></label><br>';
                         echo '<input type="text" name="review_description" required><br><br>';
-                        echo '<input type="hidden" name="product_id" value="' . $_POST["product_id"] . '">';
+                        echo '<input type="hidden" name="product_id" value="' . $_GET["product_id"] . '">';
                         echo '<input type="submit" value="Submit review">';
                         echo '</form>';
                     }
