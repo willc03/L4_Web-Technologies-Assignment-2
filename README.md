@@ -24,7 +24,7 @@ The design requirements state that the following must apply to the assessment re
  - [x] Provide user friendly feedback (when a user log in is incorrect, adding items to a basket has a problem etc)
  - [x] Provide a user friendly 404 error page if a page is not available when accessed
  - [x] Provide a means to register new users to the shop
- - [ ] Allow logged in users the functionality to leave reviews on products with average star rating and text messages
+ - [x] Allow logged in users the functionality to leave reviews on products with average star rating and text messages
  - [x] Store passwords security by hashing and salting using the bcrypt mechanism
  - [ ] Present dynamic information from the database responsively to meet the minimum requirements of the first assessment (responsive mobile design)
  - [x] Use passing of POST/GET variables to access product items rather than using the sessionStorage object as preferred in assessment 1
@@ -56,7 +56,7 @@ The design requirements state that the following must apply to the assessment re
 | User registration |  |  | / | / | Yes |
 | Calculated product reviews |  |  | / | / | Yes |
 | Product information page |  |  | / | / | Yes |
-| Submit/present reviews |  |  | / | / | No |
+| Submit/present reviews |  |  | / | / | Yes |
 | Secure passwords |  |  | / | / | Yes |
 | Dynamic content is responsive |  |  | / | / | No |
 | Advanced products search |  |  |  | / | Yes |
