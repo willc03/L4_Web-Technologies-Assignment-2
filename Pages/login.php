@@ -14,7 +14,7 @@
         $password = $_POST["loginPassword"];
         
         $dbConnection = getDatabaseConnection();
-        $sqlGetLoginInfo = "SELECT user_full_name, user_pass FROM users WHERE user_email='" . $email . "';";
+        $sqlGetLoginInfo = "SELECT user_id, user_full_name, user_pass FROM users WHERE user_email='" . $email . "';";
 
         $loginQuery = $dbConnection->query($sqlGetLoginInfo);
         if ($loginQuery and $loginQuery->num_rows > 0)
@@ -24,6 +24,7 @@
             if (password_verify($password, $hashedPassword) == true)
             {
                 $_SESSION["name"] = $userDetails["user_full_name"];
+                $_SESSION["id"] = $userDetails["user_id"];
                 header("Location: ./index.php"); // Send user to home page.
                 exit(); // End this PHP script.
             }
