@@ -8,6 +8,33 @@
 
 <?php
     session_start();
+    // Check if a review is submitted
+    if (isset($_POST['review_title']) and isset($_SERVER['REQUEST_URI']) and isset($_SESSION["name"]))
+    {
+        $dbConnection = getDatabaseConnection();
+        // Get the next review id
+        $sqlNextReviewID = "SELECT auto_increment FROM INFORMATION_SCHEMA.TABLES WHERE table_name = 'reviews';";
+        $queryNextReviewID = $dbConnection->query($sqlNextReviewID);
+        if ($queryNextReviewID and $queryNextReviewID->num_rows > 0)
+        {
+            $nextReviewID = $queryNextReviewID->fetch_row()[0];
+            // Add the new review
+            $dateTime = new DateTime();
+            $currentTime = $dateTime->format('Y-m-d H:i:s');
+            $sqlAddNextReview = $dbConnection->prepare("INSERT INTO reviews (review_id, user_id, product_id, review_title, review_desc, review_rating, review_timestamp) VALUES (" . $nextReviewID . ", " . $_SESSION["id"] . ", ?, ?, ?, ?, '" . $currentTime . "');");
+            $sqlAddNextReview->bind_param("issi", $_POST["product_id"], $_POST["review_title"], $_POST["review_description"], $_POST["rating"]);
+            // Assign parameter values
+            $sqlAddNextReview->execute();
+            // Reload the page
+            header('Location: ' . $_SERVER['REQUEST_URI'] . "?review_success=true"); // This will stop the form from trying to resubmit upon page refresh
+        }
+        else
+        {
+            header('Location: ' . $_SERVER['REQUEST_URI'] . "?review_success=false");
+        }
+        exit();
+    }
+
     function getDatabaseConnection()
     {
         $dbServerName = "localhost";
