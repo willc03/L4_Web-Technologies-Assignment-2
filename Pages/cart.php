@@ -18,7 +18,6 @@
         <link type="text/css" rel="stylesheet" href="../Stylesheets/cart.css">
         <meta name="viewport" content="width=device-width, initial-scale=1"> <!-- Enable media queries & define charset -->
         <meta charset="utf-8">
-        <script src="../Scripts/loadCart.js"></script> <!-- Load all products in the localStorage -->
         <script src="../Scripts/ajaxRequests.js"></script> <!-- Ajax is used to communicate between the client and the server -->
         <script src="../Scripts/navigation.js"></script> <!-- Used to configure the hamburger menu -->
     </head>
@@ -63,6 +62,7 @@
                         <strong>Price</strong>
                         <strong>Remove</strong> <!-- Remove buttons will be available for each item in the cart -->
                     </div>
+                    <script src="../Scripts/manageCart.js"></script> <!-- Load all products in the localStorage -->
                     <br>
                 </div>
             </div>
