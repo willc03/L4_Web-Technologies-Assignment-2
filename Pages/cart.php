@@ -20,6 +20,7 @@
         <meta charset="utf-8">
         <script src="../Scripts/ajaxRequests.js"></script> <!-- Ajax is used to communicate between the client and the server -->
         <script src="../Scripts/navigation.js"></script> <!-- Used to configure the hamburger menu -->
+        <script src="../Scripts/manageCart.js"></script> <!-- Load all products in the localStorage -->
     </head>
 
     <body> <!-- Content in the body is visible to the user -->
@@ -62,8 +63,6 @@
                         <strong>Price</strong>
                         <strong>Remove</strong> <!-- Remove buttons will be available for each item in the cart -->
                     </div>
-                    <script src="../Scripts/manageCart.js"></script> <!-- Load all products in the localStorage -->
-                    <br>
                 </div>
             </div>
         </div>
