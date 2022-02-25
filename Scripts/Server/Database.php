@@ -19,4 +19,25 @@ function database_connect()
         return $connection; // Return the connection, if successful
     }
 }
+// Create a function which can execute prepared statements
+function prepare_statement($statement, $parameters)
+{
+    // Open the database connection
+    $database_connection = database_connect();
+    // Create the statement
+    $prepared_statement = $database_connection->prepare($statement);
+    // Add the parameters to the statement
+    $prepared_statement->bind_param(...$parameters);
+    // Execute the statement
+    if ($prepared_statement->execute())
+    {
+        return $prepared_statement->get_result();
+    }
+    else
+    {
+        die("Prepared statement failed");
+    }
+    // Close the database connection
+    $database_connection->close();
+}
 ?>
