@@ -12,10 +12,10 @@ function parseValue(localStorageValue)
     return localStorageValue.split(',');
 }
 
-function addToCart(productType, productColour) {
+function addToCart(productType, productColour, productID) {
     // Function to be written for adding to the cart
     const numberOfKeys = Object.keys(localStorage).length;
-    localStorage.setItem(`UCLan_Item${numberOfKeys+1}`, `${productType},${productColour}`); // The item in the local storage is assigned to be used on cart.html and loadCart.js
+    localStorage.setItem(`UCLan_Item${numberOfKeys+1}`, `${productID}`); // The item in the local storage is assigned to be used on cart.html and loadCart.js
     alert(`${productColour} ${productType} has been added to your cart.`); // Show an alert informing the user of the addition to their cart.
 }
 function removeFromCart(containerId, itemIdentifier) 
@@ -25,7 +25,7 @@ function removeFromCart(containerId, itemIdentifier)
     container.remove(); // Remove the item from cart.html
 }
 
-function SendCartItemToServer(container, product_type, product_colour, localStorageKey) {
+function SendCartItemToServer(container, product_id, localStorageKey) {
     var XmlHttp = new XMLHttpRequest();
     XmlHttp.onreadystatechange = function() {
     }
@@ -34,7 +34,7 @@ function SendCartItemToServer(container, product_type, product_colour, localStor
         container.innerHTML += this.responseText;
     }
     XmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded"); // Allow to send post request such as in a form
-    XmlHttp.send(`product_type=${product_type}&product_colour=${product_colour}&localStorageKey=${localStorageKey}`);
+    XmlHttp.send(`product_id=${product_id}&&localStorageKey=${localStorageKey}`);
 }
 
 window.addEventListener("load", function() {
@@ -55,9 +55,7 @@ window.addEventListener("load", function() {
             console.log(itemKey.search("UCLan"));
             if (itemKey.search("UCLan") != -1)
             {
-                const itemValue = localStorage.getItem(itemKey);
-                const productInfo = parseValue(itemValue)
-                SendCartItemToServer(tableContainer, productInfo[0], productInfo[1], itemKey);
+                SendCartItemToServer(tableContainer, localStorage.getItem(itemKey), itemKey);
             }
         }
     }
