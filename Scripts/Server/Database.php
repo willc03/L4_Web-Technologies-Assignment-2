@@ -12,7 +12,7 @@ function database_connect()
     // Create a fail-safe for if the database connection was unsuccessful
     if (!$connection)
     {
-        die("Database connection failed: " . mysql_connect_error());
+        die("Database connection failed: " . mysqli_connect_error());
     }
     else
     {
