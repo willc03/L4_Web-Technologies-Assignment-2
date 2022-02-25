@@ -60,9 +60,9 @@ The design requirements state that the following must apply to the assessment re
 | Secure passwords |  |  | / | / | Yes |
 | Dynamic content is responsive |  |  | / | / | No |
 | Advanced products search |  |  |  | / | Yes |
-| Checkout mechanism |  |  |  | / | No |
-| Little/no bugs |  |  |  | / | No |
-| Professional looking and functional web application |  |  |  | / | No |
+| Checkout mechanism |  |  |  | / | Yes |
+| Little/no bugs |  |  |  | / | Yes |
+| Professional looking and functional web application |  |  |  | / | Yes |
 | Extended functionality/presentation additional to the above criteria |  |  |  | / | No |
 
 # Assessment Response
