@@ -182,7 +182,7 @@
                             echo '</form>'; // End form
                             echo '<strong class="productPrice"> £' . $productPrice . '</strong>';
                             // Create buy button
-                            echo '<input type="button" class="purchaseButton" value="Buy" onclick="addToCart(\'' . $product["product_type"] . '\', \'' . $product["colour"] . '\')">';
+                            echo '<input type="button" class="purchaseButton" value="Buy" onclick="addToCart(\'' . $product["product_type"] . '\', \'' . $product["colour"] . '\', ' . $product["product_id"] .')">';
                             // End container
                             echo '</div>';
                         }

@@ -83,7 +83,7 @@
                     echo '<p class="productDescription">' . $productInfo["description"] . '</p>';
                     echo '<strong class="productPrice"> £' . $productInfo["price"] . '</strong>';
                     // Create buy button
-                    echo '<input type="button" class="purchaseButton" value="Buy" onclick="addToCart(\'' . $productInfo["product_type"] . '\', \'' . $productInfo["colour"] . '\')">';
+                    echo '<input type="button" class="purchaseButton" value="Buy" onclick="addToCart(\'' . $productInfo["product_type"] . '\', \'' . $productInfo["colour"] . '\', ' . $productInfo["product_id"] . '\')">';
                     // End container
                     echo '</div>';
                 ?>
