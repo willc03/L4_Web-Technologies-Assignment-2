@@ -63,6 +63,10 @@ not as consistent as those for divs
 .noItems {
     text-align: center;
 }
+/* Style the checkout button */
+#checkout {
+    width: 20%;
+}
 
 /*
 Increase width of rows and change button font on mobile-sized devices.
