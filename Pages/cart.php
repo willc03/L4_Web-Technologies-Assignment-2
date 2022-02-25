@@ -57,13 +57,24 @@
                 <br>
                 <div id="table"> <!-- A table is used to show the items in the cart. -->
                     <div class="row"> <!-- A "row" class is used on each item, and in this case, the headers of the table -->
-                        <strong>Item</strong>
+                        <strong>Item ID</strong>
                         <strong>Image</strong>
                         <strong>Product Name</strong>
                         <strong>Price</strong>
                         <strong>Remove</strong> <!-- Remove buttons will be available for each item in the cart -->
                     </div>
                 </div>
+                <hr>
+                <?php
+                    if (isset($_SESSION["name"]))
+                    {
+                        echo '<button id="checkout" onclick="performCheckout()">Checkout</button>';
+                    }
+                    else
+                    {
+                        echo '<p>You must <a href="login.php">Log in</a> in order to make a purchase.</p>';
+                    }
+                ?>
             </div>
         </div>
 
