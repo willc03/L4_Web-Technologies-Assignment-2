@@ -1,29 +1,17 @@
 <!--
     Author: Will Corkill
-    Name: index.html
-    Last Accessed: 13/01/2022
+    Name: index.php
+    Last Accessed: 25/02/2022
     Description: The first page the user will see on the website.
 -->
 <!DOCTYPE html>
 
 <?php
-    session_start();
-    function getDatabaseConnection()
-    {
-        $dbServerName = "localhost";
-        $username = "root";
-        $password = "password";
-        $connection = new mysqli($dbServerName, $username, $password, "web_technologies_ass2");
-        while ($connection->connect_error)
-        {
-            $connection = new mysqli($dbServerName, $username, $password, "web_technologies_ass2");
-        }
-        return $connection;
-    }
+    session_start(); // A session is needed to get and store information about the user
+    require '../Scripts/Server/Database.php'; // Provides useful database functions
 ?>
 
 <html lang="en"> <!-- Language is specified to increase SEO. -->
-
     <head> <!-- Content in the head of the document invisible to the user -->
         <title>Home - UCLan Student's Union Shop</title> <!-- Sets the name of the tab in the browser -->
         <link type="text/css" rel="stylesheet" href="../Stylesheets/bootstrap.min.css"> <!-- The Bootstrap version 5 stylesheet -->
@@ -58,26 +46,24 @@
             <div id="main"> <!-- Defines the main content of the page, below the header, above the footer. -->
                 <div class="offer_container">
                     <h2 class="title">Offers</h2>
-                    <div id="offer_slides" class="carousel carousel-dark slide carousel-fade" data-bs-ride="carousel"> <!-- Code from Bootstrap -->
-                        <!-- The slideshow/carousel -->
+                    <div id="offer_slides" class="carousel carousel-dark slide carousel-fade" data-bs-ride="carousel">
+                        <!-- The code in this section is a piece of Bootstrap code which provides a mini slideshow presenting the offers -->
                         <div class="carousel-inner">
                             <?php
-                                $dbConnection = getDatabaseConnection();
+                                // Activate the connection to the database
+                                $dbConnection = database_connect();
+                                // Create a query to obtain offers
                                 $selectOffers = "SELECT * FROM offers;";
                                 $sqlResult = $dbConnection->query($selectOffers);
-
+                                // Check the query was successful
                                 if ($sqlResult->num_rows > 0)
                                 {
                                     $isFirstIteration = true;
+                                    // Create a carousel item for each offer
                                     while ($offer = $sqlResult->fetch_assoc())
                                     {
                                         // Opening div tag for the carousel
-                                        echo '<div class="carousel-item';
-                                        if ($isFirstIteration == true) {
-                                            echo " active";
-                                            $isFirstIteration = false;
-                                        }
-                                        echo '">';
+                                        echo '<div class="carousel-item' . ($isFirstIteration ? ' active' : '') . '">';
                                         // Offer content
                                         echo '<div class="offer">';
                                         echo '<h2 class="sub_title">' . $offer["offer_title"] . '</h2>';
@@ -85,9 +71,10 @@
                                         echo '</div>';
                                         // Closing div tag for carousel.
                                         echo '</div>';
+                                        $isFirstIteration = false;
                                     }
                                 }
-
+                                // Close the connection to the database
                                 $dbConnection->close();
                             ?>
                         </div>
@@ -140,5 +127,4 @@
             </div>
         </footer>
     </body>
-
 </html>
