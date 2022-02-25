@@ -10,7 +10,7 @@ function UserAccountRequest(currentContent) {
             }
         }
     }
-    XmlHttp.open("POST", "../Scripts/UserAccountRequest.php", true)
+    XmlHttp.open("POST", "../Scripts/Server/UserAccountRequest.php", true)
     XmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded"); // Allow to send post request such as in a form
     XmlHttp.send("currentState=" + currentContent.replaceAll(" ", "+") );
 }
