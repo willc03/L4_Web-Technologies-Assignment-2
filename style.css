@@ -29,6 +29,10 @@ input:focus { /* Remove the default outline when an input box is selected */
     width: 60%;
     margin: auto;
 }
+.new_line::after {
+    content: "\a\a";
+    white-space: pre;
+}
 /* 
     STYLE HEADER
 */
@@ -238,4 +242,107 @@ h2.sub_title {
     width: 50%;
     text-align: center;
     height: auto;
+}
+/* Product page */
+#products {
+    display: flex;
+    flex-wrap: wrap; /* Display the products in groups using flex wrapping */
+    justify-content: space-evenly;
+    margin: auto;
+}
+.product_container {
+    width: 25%;
+    margin: 1.5%;
+    border: 2px solid #f3f3f3;
+    background-color: #f3f3f3;
+}
+.product_container img {
+    width: 100%;
+}
+.product_container h2 {
+    margin-left: 5%;
+    font-size: 1.325em;
+    font-weight: bold;
+}
+.product_container h2:first-of-type { /* Affect only the first h2 in the product container */
+    margin-top: 5%;
+}
+.product_description, .product_price {
+    font-size: 0.8em;
+    margin: 5%;
+    text-align: justify;
+}
+.read_more {
+    background: none;
+    border: none;
+    color: #007fb0;
+    text-decoration: underline;
+    margin-left: 5%;
+    padding-left: 0px;
+    font-size: 0.8em;
+}
+.purchase_button {
+    width: 25%;
+    background-color: white;
+    border: 2px solid #be1622;
+    color: #be1622;
+    border-radius: 5px;
+    transition-duration: 0.5s;
+    display: block;
+    margin: 5% auto 5%;
+}
+.purchase_button:hover {
+    background-color: #be1622;
+    color: white;
+}
+#filterSettings { /* Style the product filters at the top of the page. */
+    width: 75%;
+    margin: auto;
+}
+#filterSearch, #filterButtons {
+    display: flex;
+    justify-content: space-between;
+}
+#filterSettings input {
+    border-radius: 10px;
+}
+#filterSettings input[type="submit"] {
+    width: 23%;
+}
+#filterSettings input[type="submit"]:not([class="active_category"]) {
+    background-color: white;
+    border-color: #be1622;
+    color: #be1622;
+    width: 23%;
+    white-space: normal;
+    height: 5vh;
+    font-size: 0.9vw;
+    transition-duration: 0.5s;
+}
+input.active_category, #filterSettings input[type="submit"]:hover {
+    background-color: #be1622;
+    color: white;
+    font-size: 0.9vw;
+}
+#searchBox { /* Style the text input box for searching */
+    border-color: gray;
+    width: 70%;
+    font-size: 0.825vw;
+}
+#top_scroller {
+    border-radius: 50%; /* Used to make the button round */
+    padding: 2%; /* Padding is needed to make the button more prominent */
+    background-color: #34516C;
+    position: fixed; /* A fixed position is used to keep the button on the screen at all times */
+    left: 10px; /* A static unit of measurement has been used as only a small inset is required */
+    top: 45%; /* Dictate how far from the top of the screen the button should be placed */
+    color: white;
+    border: none;
+    transition-duration: 0.5s;
+    border: 0px solid #34516C;
+}
+#top_scroller:hover {
+    color: #34516C;
+    border: 2px solid #34516C;
+    background-color: white;
 }
