@@ -8,11 +8,16 @@
     STYLE MISCELLANEOUS FEATURES
     - Global features on every page will be in this section
 */
-body {
+body { 
+    height: 100%;
     margin: 0px;
     font-family: sans-serif;
     display: flex;
     flex-direction: column;
+    overflow-x: hidden; /* Hide unexpected content shrinking on extremely small devices */
+}
+#content {
+    flex: 1 0 auto; /* Short for flex-grow, flex-shrink, flex-basis */
 }
 a {
     color: #007fb0;
@@ -133,4 +138,104 @@ h2.sub_title {
 .offer p {
     margin: 0% 5%;
     padding-bottom: 5%;
+}
+/* Login page */
+#sign_up_form, #password_container, #log_in_form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#sign_up_form.label, #log_in_form.label {
+    box-sizing: border-box;
+    text-align: center;
+}
+#sign_up_form input, #log_in_form input {
+    border: 3px solid gray;
+    border-radius: 10px;
+    font-size: 1em;
+    text-align: center;
+    white-space: normal;
+    width: 75%;
+    height: 35px;
+    transition-duration: 0.5s;
+}
+#sign_up_form input:hover, #sign_up_form input:focus, #log_in_form input:hover, .log_in_form input:focus {
+    border-color: #be1622;
+}
+#sign_up_form input[name="address"] {
+    height: 100px;
+}
+#sign_up_form input[type="submit"], #log_in_form input[type="submit"] {
+    background-color: white;
+    border-color: #be1622;
+    color: #be1622;
+    width: 20%;
+    height: auto;
+    white-space: normal; /* To ensure text wraps */
+}
+#sign_up_form input[type="submit"]:hover, #log_in_form input[type="submit"]:hover {
+    background-color: #be1622;
+    border-color: white;
+    color: white;
+}
+#password_container {
+    width: 100%;
+}
+.requirements {
+    margin: 0px;
+    text-align: center;
+}
+#password_requirements {
+    margin-top: 2.5%;
+    list-style-type: none;
+    background-color: #e3e3e3;
+    border-radius: 5px;
+    width: 65%;
+    padding: 10px;
+}
+#password_requirements li {
+    text-align: center;
+    white-space: normal;
+}
+.valid {
+    color: green;
+}
+.valid:before {
+    position: relative;
+    left: -15px;
+    content: "✔";
+}
+.invalid {
+    color: #be1622;
+}
+.invalid:before {
+    position: relative;
+    left: -15px;
+    content: "✖";
+}
+#new_account, #incorrect_details {
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2.5% 0%;
+    margin-bottom: 2.5%;
+}
+#new_account {
+    background-color: #e1ffe0;
+}
+#incorrect_details {
+    background-color: #ffe2e0;
+}
+#incorrect_details h2, #incorrect_details p {
+    color: #be1622!important;
+}
+#new_account h2, #new_account p {
+    color: #035e00!important;
+}
+#incorrect_details h2, #incorrect_details p, #new_account h2, #new_account p {
+    width: 50%;
+    text-align: center;
+    height: auto;
 }
