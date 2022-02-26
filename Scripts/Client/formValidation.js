@@ -9,7 +9,7 @@ window.onload = function()
 {
 
     // Login form
-    if (document.getElementById("signup"))
+    if (document.getElementById("sign_up_form"))
     {
         // Get password element
         let password = document.getElementById("password");
