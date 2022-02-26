@@ -41,13 +41,13 @@
 <html lang="en"> <!-- Language is specified to increase SEO. -->
     <head> <!-- Content invisible to the user -->
         <title>Products - UCLan Student's Union Shop</title> <!-- Sets the name of the tab in the browser -->
-        <link type="text/css" rel="stylesheet" href="../Stylesheets/global.css"> <!-- Style the header & footer of the page -->
-        <link type="text/css" rel="stylesheet" href="../Stylesheets/products.css">
         <meta name="viewport" content="width=device-width, initial-scale=1"> <!-- Enable media queries & define charset -->
         <meta charset="utf-8">
-        <script src="../Scripts/navigation.js"></script> <!-- Used to configure the hamburger menu -->
-        <script src="../Scripts/ajaxRequests.js"></script> <!-- Ajax is used to communicate between the client and the server -->
-        <script src="../Scripts/manageCart.js"></script> <!-- This script provides local functions for managing the cart -->
+        <link type="text/css" rel="stylesheet" href="../Stylesheets/bootstrap.min.css"> <!-- The Bootstrap version 5 stylesheet -->
+        <link type="text/css" rel="stylesheet" href="../style.css">
+        <script src="../Scripts/Client/Navigation.js"></script> <!-- Used to configure the hamburger menu -->
+        <script src="../Scripts/Client/UserAccountRequest.js"></script> <!-- Ajax is used to communicate between the client and the server -->
+        <script src="../Scripts/Client/manageCart.js"></script> <!-- This script provides local functions for managing the cart -->
     </head> 
     <body> <!-- Content in the body is visible to the user -->
         <div id="content">
@@ -101,7 +101,7 @@
                                 $hasSearchFilter = isset($_GET["productSearch"]);
                                 if (($hasProductFilter and $_GET["productFilter"] == "All") or (!$hasProductFilter and !$hasSearchFilter) or (!$hasProductFilter and ($hasSearchFilter and in_array($_GET["productSearch"], array("", " ")) )))
                                 {
-                                    echo '<input type="submit" name="productFilter" value="All" class="activeCategory">';
+                                    echo '<input type="submit" name="productFilter" value="All" class="active_category">';
                                 }
                                 else
                                 {
@@ -116,7 +116,7 @@
                                 {
                                     while ($product_type = $product_types->fetch_row())
                                     {
-                                        echo '<input type="submit" name="productFilter" value="' . $product_type[0] . '" class="' . ((isset($_GET["productFilter"]) and $product_type[0] == $_GET["productFilter"]) ? 'activeCategory' : 'categoryFilter') . '">';
+                                        echo '<input type="submit" name="productFilter" value="' . $product_type[0] . '" class="' . ((isset($_GET["productFilter"]) and $product_type[0] == $_GET["productFilter"]) ? 'active_category' : 'categoryFilter') . '">';
                                     }
                                 }
                                 $dbConnection->close();
@@ -126,7 +126,6 @@
                 </div>
                 <div id="products">
                 <?php
-                    $select_products;
                     // Retrieve a database connection
                     $dbConnection = database_connect();
                     // Select the products
@@ -159,21 +158,21 @@
                         while ($product = $select_products->fetch_assoc())
                         {
                             // Start container
-                            echo '<div class="productContainer">';
+                            echo '<div class="product_container">';
                             // Display the results to the user.
                             echo '<img src="' . $product["product_image"] . '">';
-                            echo '<h2>' . $product["colour"] . '</h2>';
-                            echo '<h2>' . $product["product_type"] . '</h2>';
-                            echo '<p class="productDescription">' . $product["productTypeDescription"] . '</p>';
+                            echo '<h2 class="sub_title">' . $product["colour"] . '</h2>';
+                            echo '<h2 class="sub_title">' . $product["product_type"] . '</h2>';
+                            echo '<p class="product_description">' . $product["productTypeDescription"] . '</p>';
                             // A small form will be used to redirect the user when they press read more
                             echo '<form action="item.php" method="get">';
                             echo '<input type="hidden" name="product_id" id="product_id" value="' . $product["product_id"] . '">';
                             echo '<input type="hidden" name="title" id="title" value="' . $product["colour"] . ' ' . $product["product_type"] . '">';
                             echo '<input class="new_line read_more" type="submit" value="Read more...">';
                             echo '</form>'; // End form
-                            echo '<strong class="productPrice"> £' . $product["price"] . '</strong>';
+                            echo '<strong class="product_price new_line"> £' . $product["price"] . '</strong>';
                             // Create buy button
-                            echo '<input type="button" class="purchaseButton" value="Buy" onclick="addToCart(\'' . $product["product_type"] . '\', \'' . $product["colour"] . '\', ' . $product["product_id"] .')">';
+                            echo '<input type="button" class="purchase_button" value="Buy" onclick="addToCart(\'' . $product["product_type"] . '\', \'' . $product["colour"] . '\', ' . $product["product_id"] .')">';
                             // End container
                             echo '</div>';
                         }
