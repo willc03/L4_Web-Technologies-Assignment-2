@@ -40,4 +40,16 @@ function prepare_statement($statement, $parameters)
     // Close the database connection
     $database_connection->close();
 }
+// Create a function to obtain the next primary key, if integer
+function get_next_primary_key($table_name)
+{
+    // Open the database connection
+    $database_connection = database_connect();
+    // Write the statement
+    $sql_next_primary_key = "SELECT auto_increment FROM INFORMATION_SCHEME.TABLES WHERE table_names = '" . $table_name . "';";
+    $query_next_primary_key = $database_connection->query($sql_next_primary_key);
+    // Get the data
+    $next_primary_key = $query_next_primary_key->fetch_row()[0];
+    return $next_primary_key;
+}
 ?>
