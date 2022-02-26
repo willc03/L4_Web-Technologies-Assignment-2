@@ -1,76 +1,73 @@
 <!--
     Author: Will Corkill
     Name: login.php
-    Last Accessed: 16/02/2022
-    Description: The first page the user will see on the website.
+    Last Accessed: 25/02/2022
+    Description: The user can log in and sign up using this page.
 -->
 <!DOCTYPE html>
 
 <?php
     session_start(); // Allow the page to make use of the $_SESSION variable
+    require '../Scripts/Server/Database.php';
     if (isset($_POST["submitType"]) and $_POST["submitType"] == "Log in") // Check if the user has pressed log in
     {
+        // Get the information from the form
         $email = $_POST["loginEmail"];
         $password = $_POST["loginPassword"];
-        
-        $dbConnection = getDatabaseConnection();
-        $sqlGetLoginInfo = "SELECT user_id, user_full_name, user_pass FROM users WHERE user_email='" . $email . "';";
-
-        $loginQuery = $dbConnection->query($sqlGetLoginInfo);
-        if ($loginQuery and $loginQuery->num_rows > 0)
+        // Use the database functions to write an injection-protected statement
+        $user_result = prepare_statement(
+            "SELECT user_id, user_full_name, user_pass FROM users WHERE user_email = ?;",
+            array("s", $email)
+        );
+        // Check if user details exist and if they do, get user details
+        if (!$user_result->num_rows > 0)
         {
-            $userDetails = $loginQuery->fetch_assoc();
-            $hashedPassword = $userDetails["user_pass"];
-            if (password_verify($password, $hashedPassword) == true)
-            {
-                $_SESSION["name"] = $userDetails["user_full_name"];
-                $_SESSION["id"] = $userDetails["user_id"];
-                header("Location: ./index.php"); // Send user to home page.
-                exit(); // End this PHP script.
-            }
+            $doesEmailExist = false;
+            exit();
         }
         else
         {
-            $doesEmailExist = false; // Will be used later to create error messages
+            $user_details = $user_result->fetch_assoc();
+            $user_hashed_password = $user_details["user_pass"];
+            // Check the user's password
+            if (password_verify($password, $user_hashed_password) == true)
+            {
+                // Set session details and redirect
+                $_SESSION["id"] = $user_details["user_id"];
+                $_SESSION["name"] = $user_details["user_full_name"];
+                header("Location: ./index.php");
+                exit();
+            }
         }
     }
     if (isset($_POST["submitType"]) and $_POST["submitType"] == "Sign Up")
     {
-        $dbConnection = getDatabaseConnection();
-        // Check if the email is already in the database
+        // Get form details
         $email = $_POST["email"];
-        $sqlGetExistingEmail = "SELECT COUNT(user_id) FROM users WHERE user_email='" . $email . "';";
-        $getEmailQuery = $dbConnection->query($sqlGetExistingEmail);
-        if ($getEmailQuery and $getEmailQuery->num_rows > 0 and $getEmailQuery->fetch_row()[0] > 0)
+        // Execute an inject-protected statement
+        $create_user_details = prepare_statement(
+            "SELECT COUNT(user_id) FROM users WHERE user_email = ?;",
+            array("s", $email)
+        )
+        // Check if the email already exists in the system
+        if ($create_user_details->num_rows > 0)
         {
             $emailAlreadyExists = true;
+            exit();
         }
         else
         {
-            echo "checking new accountage";
-            // Get the next increment
-            $sqlGetNextAvailableUserId = "SELECT auto_increment FROM INFORMATION_SCHEMA.TABLES WHERE table_name = 'users';";
-            $nextUserId = ($dbConnection->query($sqlGetNextAvailableUserId))->fetch_row()[0]; // Get the next value
-            // Add the user info
-            $dateTime = new DateTime();
-            $currentTime = $dateTime->format('Y-m-d H:i:s');
-            $sqlInsertNewUserCredentials = "INSERT INTO users (user_id, user_full_name, user_address, user_email, user_pass, user_timestamp) VALUES (" . $nextUserId . ", '" . $_POST["fullName"] . "', '" . $_POST["address"] . "', '" . $_POST["email"] . "', '" . password_hash($_POST["password"], PASSWORD_BCRYPT) . "', '" . $currentTime . "');";
-            $dbConnection->query($sqlInsertNewUserCredentials);
+            $next_user_id = get_next_primary_key("users");
+            // Insert user info into the database
+            $date_time = new DateTime();
+            $formatted_time = $date_time->format("Y-m-d H:i:s");
+            // Prepare statement
+            $sql_insert_data = prepare_statement(
+                "INSERT INTO users (user_id, user_full_name, user_address, user_email, user_pass, user_timestamp) VALUES (?, ?, ?, ?, ?, ?)",
+                array("isssss", $next_user_id, $_POST["fullName"], $_POST["address"], $_POST["email"], password_hash($_POST["password"], PASSWORD_BCRYPT), $formatted_time)
+            )
             $newAccount = true;
         }
-    }
-
-    function getDatabaseConnection()
-    {
-        $dbServerName = "localhost";
-        $username = "root";
-        $password = "password";
-        $connection = new mysqli($dbServerName, $username, $password, "web_technologies_ass2");
-        while ($connection->connect_error)
-        {
-            $connection = new mysqli($dbServerName, $username, $password, "web_technologies_ass2");
-        }
-        return $connection;
     }
 ?>
 
