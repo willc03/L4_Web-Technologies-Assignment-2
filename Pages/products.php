@@ -8,44 +8,33 @@
 
 <?php
     session_start();
+    require '../Scripts/Server/Database.php';
     // Check if a review is submitted
     if (isset($_POST['review_title']) and isset($_SERVER['REQUEST_URI']) and isset($_SESSION["name"]))
     {
-        $dbConnection = getDatabaseConnection();
-        // Get the next review id
-        $sqlNextReviewID = "SELECT auto_increment FROM INFORMATION_SCHEMA.TABLES WHERE table_name = 'reviews';";
-        $queryNextReviewID = $dbConnection->query($sqlNextReviewID);
-        if ($queryNextReviewID and $queryNextReviewID->num_rows > 0)
+        // Connect to the database
+        $dbConnection = database_connect();
+        $next_review_key = get_next_primary_key("reviews");
+        // Get formatted time
+        $date_time = new DateTime();
+        $current_time = $date_time->format('Y-m-d H:i:s');
+        // Add the new review
+        $addNewReview = prepare_statement(
+            "INSERT INTO reviews (review_id, user_id, product_id, review_title, review_desc, review_rating, review_timestamp) VALUES (?, ?, ?, ?, ?, ?, ?)",
+            array("iiissis", $next_review_key, $_SESSION["id"], $_POST["product_id"], $_POST["review_title"], $_POST["review_description"], $_POST["rating"], $current_time)
+        );
+        // Prevent the resubmit request on forms when refreshing the page
+        if ($addNewReview)
         {
-            $nextReviewID = $queryNextReviewID->fetch_row()[0];
-            // Add the new review
-            $dateTime = new DateTime();
-            $currentTime = $dateTime->format('Y-m-d H:i:s');
-            $sqlAddNextReview = $dbConnection->prepare("INSERT INTO reviews (review_id, user_id, product_id, review_title, review_desc, review_rating, review_timestamp) VALUES (" . $nextReviewID . ", " . $_SESSION["id"] . ", ?, ?, ?, ?, '" . $currentTime . "');");
-            $sqlAddNextReview->bind_param("issi", $_POST["product_id"], $_POST["review_title"], $_POST["review_description"], $_POST["rating"]);
-            // Assign parameter values
-            $sqlAddNextReview->execute();
-            // Reload the page
-            header('Location: ' . $_SERVER['REQUEST_URI'] . "?review_success=true"); // This will stop the form from trying to resubmit upon page refresh
+            header("Location: " . $_SERVER["REQUEST_URI"] . "?review_success=true");
         }
         else
         {
-            header('Location: ' . $_SERVER['REQUEST_URI'] . "?review_success=false");
+            header("Location: " . $_SERVER["REQUEST_URI"] . "?review_success=false");
         }
+        // Relinqish the database connection
+        $dbConnection->close();
         exit();
-    }
-
-    function getDatabaseConnection()
-    {
-        $dbServerName = "localhost";
-        $username = "root";
-        $password = "password";
-        $connection = new mysqli($dbServerName, $username, $password, "web_technologies_ass2");
-        while ($connection->connect_error)
-        {
-            $connection = new mysqli($dbServerName, $username, $password, "web_technologies_ass2");
-        }
-        return $connection;
     }
 ?>
 
@@ -118,22 +107,16 @@
                                 {
                                     echo '<input type="submit" name="productFilter" value="All" class="categoryFilter">';
                                 }
-
-                                $dbConnection = getDatabaseConnection();
-                                $sqlProductTypes = "SELECT productType FROM productTypes";
-                                $sqlResult = $dbConnection->query($sqlProductTypes);
-                                if ($sqlResult and $sqlResult->num_rows > 0)
+                                // Connect to the database
+                                $dbConnection = database_connect();
+                                $select_product_types = "SELECT productType FROM productTypes";
+                                $product_types = $dbConnection->query($select_product_types);
+                                // Check there are results
+                                if ($product_types and $product_types->num_rows > 0)
                                 {
-                                    while ($productType = $sqlResult->fetch_row())
+                                    while ($product_type = $product_types->fetch_row())
                                     {
-                                        if (isset($_GET["productFilter"]) and $productType[0] == $_GET["productFilter"]) 
-                                        {
-                                            echo '<input type="submit" name="productFilter" value="' . $productType[0] . '" class="activeCategory">';
-                                        }
-                                        else
-                                        {
-                                            echo '<input type="submit" name="productFilter" value="' . $productType[0] . '" class="categoryFilter">';
-                                        }
+                                        echo '<input type="submit" name="productFilter" value="' . $product_type[0] . '" class="' . ((isset($_GET["productFilter"]) and $product_type[0] == $_GET["productFilter"]) ? 'activeCategory' : 'categoryFilter') . '">';
                                     }
                                 }
                                 $dbConnection->close();
@@ -143,50 +126,58 @@
                 </div>
                 <div id="products">
                 <?php
+                    $select_products;
                     // Retrieve a database connection
-                    $dbConnection = getDatabaseConnection();
-                    // Get all the existing products
-                    $selectProducts = "SELECT * FROM products;"; // Write a query to fetch all the products
-                    if (isset($_GET["productFilter"]) and $_GET["productFilter"] != "All") // Check if a filter button has been used
+                    $dbConnection = database_connect();
+                    // Select the products
+                    if (isset($_GET["productFilter"]) and $_GET["productFilter"] != "All")
                     {
-                        $selectProducts = "SELECT * FROM products WHERE product_type='" . $_GET["productFilter"] . "';";
-                    } 
-                    else if (isset($_GET["productSearch"])) // If no filter button has been used, use the search terms, if they exist
-                    {
-                        $selectProducts = "SELECT * FROM products WHERE (colour LIKE '%" . $_GET["productSearch"] . "%' OR product_type LIKE '%" . $_GET["productSearch"] . "%');";
+                        // If a filter button has been used
+                        $select_products = prepare_statement(
+                            "SELECT products.*, productTypes.productTypeDescription, productTypes.price FROM products INNER JOIN productTypes ON products.product_type = productTypes.productType AND products.product_type = ?;",
+                            array('s', $_GET["productFilter"])
+                        );
                     }
-                    $sqlResult = $dbConnection->query($selectProducts); // Execute the query
-
-                    // Add the products to the display
-                    if ($sqlResult and $sqlResult->num_rows > 0) // Check if the results exist
+                    else if (isset($_GET["productSearch"]) and !in_array($_GET["productSearch"], array("", " ")))
                     {
-                        while ($product = $sqlResult->fetch_assoc()) // Fetch each row
+                        // If the product has been searched for
+                        $product_search = '%' . $_GET["productSearch"] . '%';
+                        $select_products = prepare_statement(
+                            "SELECT products.*, productTypes.productTypeDescription, productTypes.price FROM products INNER JOIN productTypes ON products.product_type = productTypes.productType WHERE (products.colour LIKE ? OR products.product_type LIKE ?);",
+                            array('ss', $product_search, $product_search)
+                        );
+                    }
+                    else
+                    {
+                        // If there is no form submission
+                        $sql_select_products = "SELECT products.*, productTypes.productTypeDescription, productTypes.price FROM products INNER JOIN productTypes ON products.product_type = productTypes.productType;";
+                        $select_products = $dbConnection->query($sql_select_products);
+                    }
+                    // Add the products to the display
+                    //if ($select_products and $select_products->num_rows > 0)
+                    //{
+                        while ($product = $select_products->fetch_assoc())
                         {
-                            $getProductTypeInfo = 'SELECT productTypeDescription, price FROM productTypes WHERE productType="' . $product["product_type"] . '";';
-                            $sqlProductInfo = $dbConnection->query($getProductTypeInfo);
-                            $productInfo = $sqlProductInfo->fetch_row();
-                            $productDescription = $productInfo[0];
-                            $productPrice = $productInfo[1];
-
                             // Start container
-                            echo '<div class="productContainer">'; // Display the results to the user.
+                            echo '<div class="productContainer">';
+                            // Display the results to the user.
                             echo '<img src="' . $product["product_image"] . '">';
                             echo '<h2>' . $product["colour"] . '</h2>';
                             echo '<h2>' . $product["product_type"] . '</h2>';
-                            echo '<p class="productDescription">' . $productDescription . '</p>';
+                            echo '<p class="productDescription">' . $product["productTypeDescription"] . '</p>';
                             // A small form will be used to redirect the user when they press read more
                             echo '<form action="item.php" method="get">';
                             echo '<input type="hidden" name="product_id" id="product_id" value="' . $product["product_id"] . '">';
                             echo '<input type="hidden" name="title" id="title" value="' . $product["colour"] . ' ' . $product["product_type"] . '">';
                             echo '<input class="new_line read_more" type="submit" value="Read more...">';
                             echo '</form>'; // End form
-                            echo '<strong class="productPrice"> £' . $productPrice . '</strong>';
+                            echo '<strong class="productPrice"> £' . $product["price"] . '</strong>';
                             // Create buy button
                             echo '<input type="button" class="purchaseButton" value="Buy" onclick="addToCart(\'' . $product["product_type"] . '\', \'' . $product["colour"] . '\', ' . $product["product_id"] .')">';
                             // End container
                             echo '</div>';
                         }
-                    }
+                    //}
                     $dbConnection->close();
                 ?>
                 </div>
