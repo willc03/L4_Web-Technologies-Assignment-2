@@ -1,33 +1,22 @@
 <!--
     Author: Will Corkill
-    Name: item.html
-    Last Accessed: 13/01/2022
+    Name: item.php
+    Last Accessed: 26/02/2022
     Description: The page which will display a specific item. Only accessible via clicking on an item.
 -->
 <!DOCTYPE html>
 
 <?php
     session_start();
-    if (!isset($_GET["product_id"])) // If the user has tried to access this page without selecting a product, they will be redirected to another page
+    require '../Scripts/Server/Database.php';
+    // If the user has tried to access this page without selecting a product, they will be redirected to another page
+    if (!isset($_GET["product_id"]))
     {
         header("Location: ./products.php"); // Send the user back to the products page.
         exit(); // End this PHP script
     }
-
-    $ratings = array("Awful", "Poor", "Average", "Good", "Excellent"); // Ratings will be used when displaying reviews
-
-    function getDatabaseConnection()
-    {
-        $dbServerName = "localhost";
-        $username = "root";
-        $password = "password";
-        $connection = new mysqli($dbServerName, $username, $password, "web_technologies_ass2");
-        while ($connection->connect_error)
-        {
-            $connection = new mysqli($dbServerName, $username, $password, "web_technologies_ass2");
-        }
-        return $connection;
-    }
+    // Ratings will be used when displaying reviews
+    $ratings = array("Awful", "Poor", "Average", "Good", "Excellent");
 ?>
 
 <html lang="en"> <!-- Language is specified to increase SEO. -->
@@ -64,26 +53,23 @@
 
             <div id="main"> <!-- The DOM will be manipulated to display content in this container. -->
                 <?php
-                    $dbConnection = getDatabaseConnection();
-                    $getProductInfo = 'SELECT * FROM products WHERE product_id="' . $_GET["product_id"] . '";'; // Search for the product in the database by the product ID.
-                    $sqlProductInfo = $dbConnection->query($getProductInfo);
-                    $productInfo = $sqlProductInfo->fetch_assoc();
-
-                    $getProductTypeInfo = 'SELECT productTypeDescription, price FROM productTypes WHERE productType="' . $productInfo["product_type"] . '";';
-                    $sqlProductTypeInfo = $dbConnection->query($getProductTypeInfo);
-                    $productTypeInfo = $sqlProductTypeInfo->fetch_assoc();
-                    $productInfo["price"] = $productTypeInfo["price"];
-                    $productInfo["description"] = $productTypeInfo["productTypeDescription"];
-
-                    // Start container
+                    // Get the database connection
+                    $dbConnection = database_connect();
+                    // Prepare get statement
+                    $get_product_info = prepare_statement(
+                        "SELECT products.product_id, products.colour, products.product_type, products.product_image, productTypes.price, productTypes.productTypeDescription FROM products INNER JOIN productTypes ON products.product_type = productTypes.productType AND product_id = ?;",
+                        array("i", $_GET["product_id"])
+                    );
+                    $product_info = $get_product_info->fetch_assoc();
+                    // Generate the product container
                     echo '<div class="productContainer">'; // Display the results to the user.
-                    echo '<img src="' . $productInfo["product_image"] . '">';
-                    echo '<h2>' . $productInfo["colour"] . '</h2>';
-                    echo '<h2>' . $productInfo["product_type"] . '</h2>';
-                    echo '<p class="productDescription">' . $productInfo["description"] . '</p>';
-                    echo '<strong class="productPrice"> £' . $productInfo["price"] . '</strong>';
+                    echo '<img src="' . $product_info["product_image"] . '">';
+                    echo '<h2>' . $product_info["colour"] . '</h2>';
+                    echo '<h2>' . $product_info["product_type"] . '</h2>';
+                    echo '<p class="productDescription">' . $product_info["productTypeDescription"] . '</p>';
+                    echo '<strong class="productPrice"> £' . $product_info["price"] . '</strong>';
                     // Create buy button
-                    echo '<input type="button" class="purchaseButton" value="Buy" onclick="addToCart(\'' . $productInfo["product_type"] . '\', \'' . $productInfo["colour"] . '\', ' . $productInfo["product_id"] . '\')">';
+                    echo '<input type="button" class="purchaseButton" value="Buy" onclick="addToCart(\'' . $product_info["product_type"] . '\', \'' . $product_info["colour"] . '\', ' . $product_info["product_id"] . '\')">';
                     // End container
                     echo '</div>';
                 ?>
@@ -91,30 +77,38 @@
             <div id="reviews">
                 <h2><strong>Reviews</strong></h2>
                 <?php
-                    $dbConnection = getDatabaseConnection();
-                    // Present existing reviews
-                    $sqlGetReviewCount = "SELECT COUNT(review_id) FROM reviews WHERE product_id='" . $productInfo["product_id"] . "';";
-                    $getReviewCountQuery = $dbConnection->query($sqlGetReviewCount);
-                    $numberReviews = $getReviewCountQuery->fetch_row()[0];
-
-                    if ($numberReviews == 0)
+                    $dbConnection = database_connect();
+                    // Get review count
+                    $get_review_info = prepare_statement(
+                        "SELECT COUNT(review_id), SUM(review_rating)/COUNT(review_id) FROM reviews WHERE product_id = ?;",
+                        array("i", $product_info["product_id"])
+                    );
+                    // Get data
+                    $data_row = $get_review_info->fetch_row();
+                    $review_count = $data_row[0];
+                    //
+                    if ($review_count == 0)
                     {
                         echo '<p>There are no reviews for this product!</p>';
                     }
                     else
                     {
-                        $sqlGetAverageProductRating = "SELECT SUM(review_rating)/COUNT(review_id) FROM reviews WHERE product_id='" . $productInfo["product_id"] . "';";
-                        $getAverageRatingQuery = $dbConnection->query($sqlGetAverageProductRating);
-                        echo '<h2>Average product rating: ' . round($getAverageRatingQuery->fetch_row()[0], 2) . ' / 5</h2>';
-                        $sqlGetReviews = "SELECT review_title, review_desc, review_rating FROM reviews WHERE product_id='" . $productInfo["product_id"] . "';";
-                        $getReviewsQuery = $dbConnection->query($sqlGetReviews);
+                        // Display average product rating
+                        $average_rating = $data_row[1];
+                        echo '<h2>Average product rating: ' . round($average_rating, 2) . '</h2>';
+                        // Get content of reviews
+                        $get_reviews = prepare_statement(
+                            "SELECT review_title, review_desc, review_rating FROM reviews WHERE product_id = ?;",
+                            array("i", $product_info["product_id"])
+                        );
                         echo '<div id="userReviews">';
-                        while ($result = $getReviewsQuery->fetch_assoc()) // Get each row and make a review container for each
+                        // Display the reviews
+                        while ($review_content = $get_reviews->fetch_assoc())
                         {
                             echo '<div class="reviewContainer">';
-                            echo '<h3>' . $result["review_title"] . '</h3>';
-                            echo '<p class="review_rating">' . $ratings[$result["review_rating"]-1] . ' (' . $result["review_rating"] . '/5)</p>';
-                            echo '<p class="review_description">' . $result["review_desc"] . '</p>';
+                            echo '<h3>' . $review_content["review_title"] . '</h3>';
+                            echo '<p class="review_rating">' . $ratings[$review_content["review_rating"]-1] . ' (' . $review_content["review_rating"] . '/5)</p>';
+                            echo '<p class="review_description">' . $review_content["review_desc"] . '</p>';
                             echo '</div>';
                         }
                         echo '</div>';
@@ -144,8 +138,9 @@
                         echo '<input type="submit" value="Submit review">';
                         echo '</form>';
                     }
-                    else // If the user is not logged in, they will have to log in before they can submit a review
+                    else
                     {
+                        // If the user is not logged in, they will have to log in before they can submit a review
                         echo "<p>Log in <a href='login.php'>here</a> to submit a review.</p>";
                     }
                 ?>
