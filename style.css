@@ -1,0 +1,136 @@
+/*
+    Name: style.css
+    Author: Will Corkill
+    Description: A new stylesheet which will be applied globally across the website, instead of multiple singular stylesheets.
+    Last Accessed: 26/02/2022
+*/
+/*
+    STYLE MISCELLANEOUS FEATURES
+    - Global features on every page will be in this section
+*/
+body {
+    margin: 0px;
+    font-family: sans-serif;
+    display: flex;
+    flex-direction: column;
+}
+a {
+    color: #007fb0;
+}
+input:focus { /* Remove the default outline when an input box is selected */
+    outline: none;
+}
+#main {
+    width: 60%;
+    margin: auto;
+}
+/* 
+    STYLE HEADER
+*/
+#header {
+    /* Static units of measurement may be used in this section, media queries 
+    will be used to apply different heights etc to elements on mobile devices */
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100px;
+    background-color: #be1622;
+    padding: 20px 0px; /* 0px to exclude horizontal padding */
+    box-shadow: 0px 0px 10px 0px;
+}
+#uclan_logo { /* Manage default logo sizing */
+    max-height: 75px;
+    margin-left: 10px; /* Static measurements are used as the height is also static */
+    margin-right: 50px; /* Create a larger gap between the image and header title */
+}
+#title {
+    margin-right: auto;
+    color: white;
+    font-size: 1.5em;
+}
+nav {
+    display: flex;
+    justify-content: space-around; /* Equally space the items in the navigation menu */
+    align-items: center;
+    width: 30%; /* Allow the navigation bar to be large enough for each item */
+    height: 100%;
+    margin-right: 2.5%;
+}
+#hamburger_menu { /* Make sure the humburger menu is hidden by default */
+    display: none;
+}
+nav a, #clearButton {
+    text-decoration: none;
+    color: white;
+    background: none;
+    border: none;
+    font-size: 1.2vw;
+    cursor: pointer;
+}
+/*
+    STYLE FOOTER
+*/
+footer {
+    display: flex;
+    flex-shrink: 0; /* Stop each container from shrinking to accommodate the others */
+    flex-wrap: wrap; /* Move containers to a new row if needed */
+    justify-content: space-around;
+    padding: 2% 0%; /* Set vertical-only padding */
+    background-color: #34516c;
+    color: white;
+    margin-top: 2.5%;
+}
+footer p {
+    margin: 0%;
+}
+/*
+    STYLE EACH PAGE
+*/
+/* 404 Page */
+#error_container {
+    width: 60%;
+    margin: 2.5% auto;
+    padding: 10px;
+    background-color: #ffe2e0;
+    color: #be1622;
+    border-radius: 5px;
+}
+/* Home page */
+h2.title { /* This styling is used to make titles more prominent */
+    color: #34516c;
+    margin: 3.5% 0%;
+    font-size: 2em;
+}
+h2.sub_title {
+    color: #f2be1a;
+    margin-bottom: 10px;
+}
+.video_container { /* To style the YouTube iFrame and MP4 file */
+    position: relative;
+    width: 80%;
+    height: 0%;
+    padding-bottom: 50%;
+}
+.video_content {
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+.offer { /* To style the offer carousel */
+    width: 75%;
+    margin: auto;
+    background-color: #f3f3f3;
+    border: 2px solid #c3c3c3;
+    border-radius: 5px;
+}
+.offer h2 {
+    padding-top: 5%;
+    padding-left: 5%;
+}
+.offer p {
+    margin: 0% 5%;
+    padding-bottom: 5%;
+}
