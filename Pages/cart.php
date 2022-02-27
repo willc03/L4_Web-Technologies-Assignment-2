@@ -14,13 +14,13 @@
 
     <head> <!-- Content invisible to the user -->
         <title>Cart - UCLan Student's Union Shop</title> <!-- Sets the name of the tab in the browser -->
-        <link type="text/css" rel="stylesheet" href="../Stylesheets/global.css"> <!-- Style the header & footer of the page -->
-        <link type="text/css" rel="stylesheet" href="../Stylesheets/cart.css">
         <meta name="viewport" content="width=device-width, initial-scale=1"> <!-- Enable media queries & define charset -->
         <meta charset="utf-8">
-        <script src="../Scripts/ajaxRequests.js"></script> <!-- Ajax is used to communicate between the client and the server -->
-        <script src="../Scripts/navigation.js"></script> <!-- Used to configure the hamburger menu -->
-        <script src="../Scripts/manageCart.js"></script> <!-- Load all products in the localStorage -->
+        <link type="text/css" rel="stylesheet" href="../Stylesheets/bootstrap.min.css"> <!-- The Bootstrap version 5 stylesheet -->
+        <link type="text/css" rel="stylesheet" href="../style.css">
+        <script src="../Scripts/Client/UserAccountRequest.js"></script> <!-- Ajax is used to communicate between the client and the server -->
+        <script src="../Scripts/Client/Navigation.js"></script> <!-- Used to configure the hamburger menu -->
+        <script src="../Scripts/Client/manageCart.js"></script> <!-- Load all products in the localStorage -->
     </head>
 
     <body> <!-- Content in the body is visible to the user -->
@@ -43,7 +43,7 @@
             <div id="mobileNavigationContainer"></div>
 
             <div id="main">
-                <h2>Shopping Cart</h2>
+                <h2 class="title">Shopping Cart</h2>
                 <?php
                     if (isset($_SESSION["name"])) 
                     {
@@ -56,13 +56,14 @@
                 ?>
                 <br>
                 <div id="table"> <!-- A table is used to show the items in the cart. -->
-                    <div class="row"> <!-- A "row" class is used on each item, and in this case, the headers of the table -->
+                    <div class="table_row"> <!-- A "row" class is used on each item, and in this case, the headers of the table -->
                         <strong>Item ID</strong>
                         <strong>Image</strong>
                         <strong>Product Name</strong>
                         <strong>Price</strong>
                         <strong>Remove</strong> <!-- Remove buttons will be available for each item in the cart -->
                     </div>
+                    <hr>
                 </div>
                 <hr>
                 <?php
