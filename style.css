@@ -346,3 +346,71 @@ input.active_category, #filterSettings input[type="submit"]:hover {
     border: 2px solid #34516C;
     background-color: white;
 }
+/* Item page */
+#reviews {
+    width: 60%;
+    margin: 2.5% auto;
+    background-color: #e0efff;
+    border-radius: 5px;
+    padding: 10px;
+}
+#reviews * {
+    color: #005177;
+}
+#reviews:first-child {
+    margin-top: 0px;
+}
+#reviews:last-child {
+    margin-bottom: 0px;
+}
+#user_reviews {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.review_container {
+    border: 2px solid #005177;
+    border-radius: 5px;
+    padding: 5px;
+    margin-bottom: 2.5%;
+    width: 100%;
+}
+.review_container h3 {
+    margin: 0px;
+}
+.review_rating {
+    margin-top: 0%;
+}
+.review_description {
+    text-align: justify;
+}
+#write_review input {
+    border: #005177 2px solid;
+    border-radius: 5px;
+}
+#write_review input[type="text"] {
+    height: 35px; /* Relative measurements cannot be used in this instance, media queries will be used to optimise the size to smaller devices */
+    font-size: large;
+    width: 100%;
+}
+#write_review input[name="review_description"] {
+    height: 80px;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+#write_review input[type="submit"] {
+    background-color: white;
+    font-size: medium;
+    height: auto;
+    width: auto;
+    transition-duration: 0.5s;
+}
+#write_review input[type="submit"]:hover {
+    background-color: #005177;
+    color: white;
+}
+.large {
+    margin: 2.5% auto;
+    width: 85%;
+}
