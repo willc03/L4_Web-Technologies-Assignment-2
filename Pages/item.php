@@ -23,13 +23,13 @@
 
     <head> <!-- Content invisible to the user -->
         <title><?php echo $_GET["title"] . " - UCLan Student's Union Shop"; ?></title> <!-- PHP will be used to edit the name of the tab -->
-        <link type="text/css" rel="stylesheet" href="../Stylesheets/global.css"> <!-- Style the header & footer of the page -->
-        <link type="text/css" rel="stylesheet" href="../Stylesheets/item.css"> <!-- The unique CSS file for this page -->
         <meta name="viewport" content="width=device-width, initial-scale=1"> <!-- Enable media queries & define charset -->
         <meta charset="utf-8">
-        <script src="../Scripts/navigation.js"></script> <!-- Used to configure the hamburger menu -->
-        <script src="../Scripts/ajaxRequests.js"></script> <!-- Ajax is used to communicate between the client and the server -->
-        <script src="../Scripts/manageCart.js"></script> <!-- This script provides local functions for managing the cart -->
+        <link type="text/css" rel="stylesheet" href="../Stylesheets/bootstrap.min.css"> <!-- The Bootstrap version 5 stylesheet -->
+        <link type="text/css" rel="stylesheet" href="../style.css">
+        <script src="../Scripts/Client/Navigation.js"></script> <!-- Used to configure the hamburger menu -->
+        <script src="../Scripts/Client/UserAccountRequest.js"></script> <!-- Ajax is used to communicate between the client and the server -->
+        <script src="../Scripts/Client/manageCart.js"></script> <!-- This script provides local functions for managing the cart -->
     </head>
 
     <body> <!-- Content in the body is visible to the user -->
@@ -62,14 +62,14 @@
                     );
                     $product_info = $get_product_info->fetch_assoc();
                     // Generate the product container
-                    echo '<div class="productContainer">'; // Display the results to the user.
+                    echo '<div class="product_container large">'; // Display the results to the user.
                     echo '<img src="' . $product_info["product_image"] . '">';
-                    echo '<h2>' . $product_info["colour"] . '</h2>';
-                    echo '<h2>' . $product_info["product_type"] . '</h2>';
-                    echo '<p class="productDescription">' . $product_info["productTypeDescription"] . '</p>';
-                    echo '<strong class="productPrice"> £' . $product_info["price"] . '</strong>';
+                    echo '<h2 class="sub_title">' . $product_info["colour"] . '</h2>';
+                    echo '<h2 class="sub_title">' . $product_info["product_type"] . '</h2>';
+                    echo '<p class="product_description">' . $product_info["productTypeDescription"] . '</p>';
+                    echo '<strong class="product_price"> £' . $product_info["price"] . '</strong>';
                     // Create buy button
-                    echo '<input type="button" class="purchaseButton" value="Buy" onclick="addToCart(\'' . $product_info["product_type"] . '\', \'' . $product_info["colour"] . '\', ' . $product_info["product_id"] . '\')">';
+                    echo '<input type="button" class="purchase_button" value="Buy" onclick="addToCart(\'' . $product_info["product_type"] . '\', \'' . $product_info["colour"] . '\', ' . $product_info["product_id"] . '\')">';
                     // End container
                     echo '</div>';
                 ?>
@@ -101,11 +101,11 @@
                             "SELECT review_title, review_desc, review_rating FROM reviews WHERE product_id = ?;",
                             array("i", $product_info["product_id"])
                         );
-                        echo '<div id="userReviews">';
+                        echo '<div id="user_reviews">';
                         // Display the reviews
                         while ($review_content = $get_reviews->fetch_assoc())
                         {
-                            echo '<div class="reviewContainer">';
+                            echo '<div class="review_container">';
                             echo '<h3>' . $review_content["review_title"] . '</h3>';
                             echo '<p class="review_rating">' . $ratings[$review_content["review_rating"]-1] . ' (' . $review_content["review_rating"] . '/5)</p>';
                             echo '<p class="review_description">' . $review_content["review_desc"] . '</p>';
