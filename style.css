@@ -441,3 +441,43 @@ input.active_category, #filterSettings input[type="submit"]:hover {
     border-radius: 5px;
     margin: auto;
 }
+
+/*
+    MEDIA QUERIES
+    - Used to modify CSS based on specified conditions
+*/
+@media only screen and (max-width: 480px) {
+    #header {
+        height: 50px;
+    } 
+    #uclan_logo {
+        max-width: 75%;
+        margin: 0% 2.5%;
+    }
+    #title {
+        font-size: 0.75em;
+    }
+    #hamburger_menu {
+        display: block;
+        margin-right: 5%;
+    }
+    nav {
+        display: none; /* This will be the default display value, DOM manipulation will allow inline CSS override. */
+        background-color: #c4c7d7;
+        width: 100%; /* Overrides existing width from 20% to span the whole screen. */
+        justify-content: space-around; /* Space out each menu button equally */
+        margin-right: 0px;
+        padding: 10px 0px;
+    }
+    nav a {
+        font-size: 3vw;
+    }
+    #main {
+        width: 95%;
+    }
+    footer div {
+        margin-left: 5%; /* Ensure proper spacing of the footer elements */
+        margin-bottom: 5%;
+        flex: 100%; /* (w3schools, n.d. a) */
+    }
+}
