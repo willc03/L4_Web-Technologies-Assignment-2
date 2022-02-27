@@ -24,7 +24,7 @@
     $prepareProductStatement->execute();
     $result = $prepareProductStatement->get_result();
     $data_row = $result->fetch_assoc();
-    echo '<div class="row" id="' . $data_row["product_type"] . $data_row["colour"] . '">';
+    echo '<div class="table_row" id="' . $data_row["product_type"] . $data_row["colour"] . '">';
     echo '<p>' . $data_row["product_id"] . '</p>';
     echo '<img src=\'' . $data_row["product_image"] . '\'>';
     echo '<p>' . $data_row["colour"] . ' ' . $data_row["product_type"] . '</p>';
