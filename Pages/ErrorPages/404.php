@@ -10,11 +10,13 @@
 
     <head> <!-- Content in the head of the document invisible to the user -->
         <title>Page Not Found - UCLan Student's Union Shop</title> <!-- Sets the name of the tab in the browser -->
+        <link type="text/css" rel="stylesheet" href="../bootstrap.min.css"> <!-- The Bootstrap version 5 stylesheet -->
         <link type="text/css" rel="stylesheet" href="../style.css"> <!-- Style the header & footer of the page -->
         <meta name="viewport" content="width=device-width, initial-scale=1"> <!-- Enable media queries & define charset -->
         <meta charset="utf-8">
-        <script src="../Scripts/ajaxRequests.js"></script> <!-- Ajax is used to communicate between the client and the server -->
-        <script src="../Scripts/navigation.js"></script> <!-- Used to configure the hamburger menu -->
+        <script src="../Scripts/Client/UserAccountRequest.js"></script> <!-- Ajax is used to communicate between the client and the server -->
+        <script src="../Scripts/Client/Navigation.js"></script> <!-- Used to configure the hamburger menu -->
+        <script src="../Scripts/Client/bootstrap.bundle.min.js"></script> <!-- The Bootstrap version 5 latest scripts -->
     </head>
 
     <body> <!-- Content in the body is visible to the user -->

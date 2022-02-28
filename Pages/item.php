@@ -25,11 +25,12 @@
         <title><?php echo $_GET["title"] . " - UCLan Student's Union Shop"; ?></title> <!-- PHP will be used to edit the name of the tab -->
         <meta name="viewport" content="width=device-width, initial-scale=1"> <!-- Enable media queries & define charset -->
         <meta charset="utf-8">
-        <link type="text/css" rel="stylesheet" href="../Stylesheets/bootstrap.min.css"> <!-- The Bootstrap version 5 stylesheet -->
+        <link type="text/css" rel="stylesheet" href="../bootstrap.min.css"> <!-- The Bootstrap version 5 stylesheet -->
         <link type="text/css" rel="stylesheet" href="../style.css">
         <script src="../Scripts/Client/Navigation.js"></script> <!-- Used to configure the hamburger menu -->
         <script src="../Scripts/Client/UserAccountRequest.js"></script> <!-- Ajax is used to communicate between the client and the server -->
         <script src="../Scripts/Client/manageCart.js"></script> <!-- This script provides local functions for managing the cart -->
+        <script src="../Scripts/Client/bootstrap.bundle.min.js"></script> <!-- The Bootstrap version 5 latest scripts -->
     </head>
 
     <body> <!-- Content in the body is visible to the user -->
