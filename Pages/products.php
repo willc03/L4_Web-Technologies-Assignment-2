@@ -172,7 +172,7 @@
                             echo '</form>'; // End form
                             echo '<strong class="product_price new_line"> £' . $product["price"] . '</strong>';
                             // Create buy button
-                            echo '<input type="button" class="purchase_button" value="Buy" onclick="addToCart(\'' . $product["product_type"] . '\', \'' . $product["colour"] . '\', ' . $product["product_id"] .')">';
+                            echo '<input type="button" class="purchase_button" value="Buy" ontouchend="addToCart(\'' . $product["product_type"] . '\', \'' . $product["colour"] . '\', ' . $product["product_id"] .')" onclick="addToCart(\'' . $product["product_type"] . '\', \'' . $product["colour"] . '\', ' . $product["product_id"] .')">';
                             // End container
                             echo '</div>';
                         }
