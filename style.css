@@ -8,7 +8,7 @@
     STYLE MISCELLANEOUS FEATURES
     - Global features on every page will be in this section
 */
-body { 
+html, body { 
     height: 100%;
     margin: 0px;
     font-family: sans-serif;
@@ -18,6 +18,7 @@ body {
 }
 #content {
     flex: 1 0 auto; /* Short for flex-grow, flex-shrink, flex-basis */
+    
 }
 a {
     color: #007fb0;
@@ -56,6 +57,8 @@ input:focus { /* Remove the default outline when an input box is selected */
     margin-right: auto;
     color: white;
     font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 0px;
 }
 nav {
     display: flex;
@@ -180,7 +183,6 @@ h2.sub_title {
 }
 #sign_up_form input[type="submit"]:hover, #log_in_form input[type="submit"]:hover {
     background-color: #be1622;
-    border-color: white;
     color: white;
 }
 #password_container {
@@ -306,8 +308,9 @@ h2.sub_title {
 #filterSettings input {
     border-radius: 10px;
 }
-#filterSettings input[type="submit"] {
+#filterSettings input[class="active_category"] {
     width: 23%;
+    white-space: normal;
 }
 #filterSettings input[type="submit"]:not([class="active_category"]) {
     background-color: white;
@@ -446,12 +449,13 @@ input.active_category, #filterSettings input[type="submit"]:hover {
     MEDIA QUERIES
     - Used to modify CSS based on specified conditions
 */
-@media only screen and (max-width: 480px) {
+@media screen and (max-width: 480px) {
     #header {
         height: 50px;
     } 
     #uclan_logo {
         max-width: 75%;
+        max-height: 50px;
         margin: 0% 2.5%;
     }
     #title {
@@ -469,8 +473,8 @@ input.active_category, #filterSettings input[type="submit"]:hover {
         margin-right: 0px;
         padding: 10px 0px;
     }
-    nav a {
-        font-size: 3vw;
+    nav a, nav button {
+        font-size: 3vw!important;
     }
     #main {
         width: 95%;
@@ -479,5 +483,12 @@ input.active_category, #filterSettings input[type="submit"]:hover {
         margin-left: 5%; /* Ensure proper spacing of the footer elements */
         margin-bottom: 5%;
         flex: 100%; /* (w3schools, n.d. a) */
+    }
+    /* Product mobile styling */
+    .product_container {
+        width: 75%;
+    }
+    #filterButtons input, #filterSearch input {
+        font-size: 1.8vw!important;
     }
 }
