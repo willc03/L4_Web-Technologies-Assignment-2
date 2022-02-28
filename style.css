@@ -395,7 +395,7 @@ input.active_category, #filterSettings input[type="submit"]:hover {
 #write_review input[type="text"] {
     height: 35px; /* Relative measurements cannot be used in this instance, media queries will be used to optimise the size to smaller devices */
     font-size: large;
-    width: 100%;
+    width: 85%;
 }
 #write_review input[name="review_description"] {
     height: 80px;
@@ -449,6 +449,28 @@ input.active_category, #filterSettings input[type="submit"]:hover {
     MEDIA QUERIES
     - Used to modify CSS based on specified conditions
 */
+/* Smaller desktops */
+@media screen and (max-width: 768px) {
+    #uclan_logo {
+        max-height: 50px;
+    }
+    #title {
+        font-size: 1.15em;
+    }
+    #header {
+        height: 75px;
+    }
+    nav a {
+        font-size: 1.75vw;
+    }
+    footer {
+        font-size: 0.75em; /* Reduce the size of the font on tablets */
+    }
+    #passwordRequirements li {
+        font-size: 1.5vw;
+    }
+}
+/* Mobile */
 @media screen and (max-width: 480px) {
     #header {
         height: 50px;
