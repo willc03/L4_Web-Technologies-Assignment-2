@@ -69,7 +69,7 @@
                     echo '<p class="product_description">' . $product_info["productTypeDescription"] . '</p>';
                     echo '<strong class="product_price"> £' . $product_info["price"] . '</strong>';
                     // Create buy button
-                    echo '<input type="button" class="purchase_button" value="Buy" ontouchend="addToCart(\'' . $product["product_type"] . '\', \'' . $product["colour"] . '\', ' . $product["product_id"] .')" onclick="addToCart(\'' . $product_info["product_type"] . '\', \'' . $product_info["colour"] . '\', ' . $product_info["product_id"] . '\')">';
+                    echo '<input type="button" class="purchase_button" value="Buy" onclick="addToCart(\'' . $product_info["product_type"] . '\', \'' . $product_info["colour"] . '\', ' . $product_info["product_id"] .')" ontouchend="addToCart(\'' . $product_info["product_type"] . '\', \'' . $product_info["colour"] . '\', ' . $product_info["product_id"] . '\')">';
                     // End container
                     echo '</div>';
                 ?>
