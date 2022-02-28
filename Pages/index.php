@@ -26,7 +26,7 @@
     <body> <!-- Content in the body is visible to the user -->
         <div id="content">
             <div id="header"> <!-- Defines the top of the page, visible on all pages -->
-                <a href="index.html"> <!-- Allows the UCLan logo to act as a button (Nikitha, 2018) -->
+                <a href="index.php"> <!-- Allows the UCLan logo to act as a button (Nikitha, 2018) -->
                     <img id="uclan_logo" src="../Images/uclan_logo.png" alt="University of Central Lancashire Logo">
                 </a>
                 <h2 id="title">Student Shop</h2>
