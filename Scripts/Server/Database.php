@@ -35,6 +35,7 @@ function prepare_statement($statement, $parameters)
     }
     else
     {
+        return "failed";
         die("Prepared statement failed");
     }
     // Close the database connection
@@ -51,5 +52,7 @@ function get_next_primary_key($table_name)
     // Get the data
     $next_primary_key = $query_next_primary_key->fetch_row();
     return $next_primary_key[0];
+    // Close database connection
+    $database_connection->close();
 }
 ?>
