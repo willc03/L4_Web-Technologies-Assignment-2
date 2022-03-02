@@ -6,6 +6,10 @@
 -->
 <!DOCTYPE html>
 
+<?php
+    session_start();
+?>
+
 <html lang="en"> <!-- Language is specified to increase SEO. -->
 
     <head> <!-- Content in the head of the document invisible to the user -->
