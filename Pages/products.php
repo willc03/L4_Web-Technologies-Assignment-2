@@ -120,6 +120,7 @@
                                         echo '<input type="submit" name="productFilter" value="' . $product_type[0] . '" class="' . ((isset($_GET["productFilter"]) and $product_type[0] == $_GET["productFilter"]) ? 'active_category' : 'categoryFilter') . '">';
                                     }
                                 }
+                                // Disconnect the database from the page
                                 $dbConnection->close();
                             ?>
                         </div>
@@ -154,30 +155,28 @@
                         $select_products = $dbConnection->query($sql_select_products);
                     }
                     // Add the products to the display
-                    //if ($select_products and $select_products->num_rows > 0)
-                    //{
-                        while ($product = $select_products->fetch_assoc())
-                        {
-                            // Start container
-                            echo '<div class="product_container">';
-                            // Display the results to the user.
-                            echo '<img src="' . $product["product_image"] . '">';
-                            echo '<h2 class="sub_title">' . $product["colour"] . '</h2>';
-                            echo '<h2 class="sub_title">' . $product["product_type"] . '</h2>';
-                            echo '<p class="product_description">' . $product["productTypeDescription"] . '</p>';
-                            // A small form will be used to redirect the user when they press read more
-                            echo '<form action="item.php" method="get">';
-                            echo '<input type="hidden" name="product_id" id="product_id" value="' . $product["product_id"] . '">';
-                            echo '<input type="hidden" name="title" id="title" value="' . $product["colour"] . ' ' . $product["product_type"] . '">';
-                            echo '<input class="new_line read_more" type="submit" value="Read more...">';
-                            echo '</form>'; // End form
-                            echo '<strong class="product_price new_line"> £' . $product["price"] . '</strong>';
-                            // Create buy button
-                            echo '<input type="button" class="purchase_button" value="Buy" ontouchend="addToCart(\'' . $product["product_type"] . '\', \'' . $product["colour"] . '\', ' . $product["product_id"] .')" onclick="addToCart(\'' . $product["product_type"] . '\', \'' . $product["colour"] . '\', ' . $product["product_id"] .')">';
-                            // End container
-                            echo '</div>';
-                        }
-                    //}
+                    while ($product = $select_products->fetch_assoc())
+                    {
+                        // Start container
+                        echo '<div class="product_container">';
+                        // Display the results to the user.
+                        echo '<img src="' . $product["product_image"] . '">';
+                        echo '<h2 class="sub_title">' . $product["colour"] . '</h2>';
+                        echo '<h2 class="sub_title">' . $product["product_type"] . '</h2>';
+                        echo '<p class="product_description">' . $product["productTypeDescription"] . '</p>';
+                        // A small form will be used to redirect the user when they press read more
+                        echo '<form action="item.php" method="get">';
+                        echo '<input type="hidden" name="product_id" id="product_id" value="' . $product["product_id"] . '">';
+                        echo '<input type="hidden" name="title" id="title" value="' . $product["colour"] . ' ' . $product["product_type"] . '">';
+                        echo '<input class="new_line read_more" type="submit" value="Read more...">';
+                        echo '</form>'; // End form
+                        echo '<strong class="product_price new_line"> £' . $product["price"] . '</strong>';
+                        // Create buy button
+                        echo '<input type="button" class="purchase_button" value="Buy" ontouchend="addToCart(\'' . $product["product_type"] . '\', \'' . $product["colour"] . '\', ' . $product["product_id"] .')" onclick="addToCart(\'' . $product["product_type"] . '\', \'' . $product["colour"] . '\', ' . $product["product_id"] .')">';
+                        // End container
+                        echo '</div>';
+                    }
+                    // Close the database connection
                     $dbConnection->close();
                 ?>
                 </div>
