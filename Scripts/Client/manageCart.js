@@ -67,7 +67,6 @@ function performCheckout() {
             }
         }
         XmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded"); // Allow to send post request such as in a form
-        console.log(itemPostString)
         XmlHttp.send(itemPostString);
     }
     else
