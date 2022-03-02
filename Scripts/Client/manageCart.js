@@ -63,7 +63,7 @@ function performCheckout() {
             }
             else
             {
-                alert("Your purchase was unsuccessful, please try again later");
+                alert("Your purchase was unsuccessful, please try again later.");
             }
         }
         XmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded"); // Allow to send post request such as in a form
