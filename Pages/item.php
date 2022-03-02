@@ -73,6 +73,8 @@
                     echo '<input type="button" class="purchase_button" value="Buy" onclick="addToCart(\'' . $product_info["product_type"] . '\', \'' . $product_info["colour"] . '\', ' . $product_info["product_id"] .')" ontouchend="addToCart(\'' . $product_info["product_type"] . '\', \'' . $product_info["colour"] . '\', ' . $product_info["product_id"] . '\')">';
                     // End container
                     echo '</div>';
+                    // Close the database connection
+                    $dbConnection->close();
                 ?>
             </div>
             <div id="reviews">
@@ -144,6 +146,8 @@
                         // If the user is not logged in, they will have to log in before they can submit a review
                         echo "<p>Log in <a href='login.php'>here</a> to submit a review.</p>";
                     }
+                    // Close the database connection
+                    $dbConnection->close();
                 ?>
             </div>
         </div>
