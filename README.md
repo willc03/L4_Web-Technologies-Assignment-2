@@ -31,7 +31,6 @@ The design requirements state that the following must apply to the assessment re
 
  ## The Marking Scheme
  There is a banded marking scheme, the criteria below is used as a guide with academic judgement to determine a grade
- 
 
  - Design and evaluate appropriate user interfaces for front-end web applications - Wireframing with annotations overlaid
  - Develop a front-end web application using modern development environments - web application implementation (detailed breakdown below)
