@@ -9,6 +9,11 @@
 <?php
     session_start(); // Allow the page to make use of the $_SESSION variable
     require '../Scripts/Server/Database.php';
+    if (isset($_SESSION["id"])) // Send user back to the home page if they are already logged in
+    {
+        header("Location: ./index.php");
+        exit();
+    }
     if (isset($_POST["submit_type"]) and $_POST["submit_type"] == "Log in") // Check if the user has pressed log in
     {
         // Get the information from the form
