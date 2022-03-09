@@ -62,7 +62,7 @@ The design requirements state that the following must apply to the assessment re
 | Checkout mechanism |  |  |  | / | Yes |
 | Little/no bugs |  |  |  | / | Yes |
 | Professional looking and functional web application |  |  |  | / | Yes |
-| Extended functionality/presentation additional to the above criteria |  |  |  | / | No |
+| Extended functionality/presentation additional to the above criteria |  |  |  | / | Yes |
 
 # Assessment Response
 
