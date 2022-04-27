@@ -460,8 +460,9 @@ input.active_category, #filterSettings input[type="submit"]:hover {
     #header {
         height: 75px;
     }
-    nav a {
+    nav a, nav button {
         font-size: 1.75vw;
+        padding: 0px;
     }
     footer {
         font-size: 0.75em; /* Reduce the size of the font on tablets */
