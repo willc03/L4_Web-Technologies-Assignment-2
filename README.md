@@ -64,7 +64,25 @@ The design requirements state that the following must apply to the assessment re
 | Extended functionality/presentation additional to the above criteria |  |  |  | / | Yes |
 
 # Assessment Response
+## Changes to the database
+Various changes to the database have been made as the website has progressed in its building. 
 
+Firstly, as each section of the website was developed, the names of the tables were changed from tbl_[table_name] to simply [table_name], this was purely for organisational purposes, to signify that this section of the database was either in progress or complete.
+> For example 'tbl_products' becomes 'products'
+
+Next, the largest change to the database was removing the 'product_type'-related information from the database. This was primarily done for reasons of reducing the storage taken up by having the information on every row in the table, however, this information was moved into a separate table with a one-to-many relationship. The data was moved to prevent the 'update' anomaly to occur - meaning the data will only have to be updated in one place to affect all records.
+
+Another change in the products table is the change of all the image paths. Due to conflicting names between the file paths on the file names themselves and the pre-set database. The change of the file paths in the database improves the organisation.
+
+## Accessing the database
+The database in its final form before the assignment was submitted can be found in the file "modified_database_final.sql", which will reconstruct the database as necessary.
+
+## Other changes made to the assignment
+A unique page for logging in and signing up was created, this can be accessed through the header on each page. This was done for ease of use and consistency across the website.
+> There are still hyperlinks on pages where the log in page may need to be accessed.
+
+A section below the shopping cart on cart.php has been added which will display the users previous orders
+> They are displayed in a table-link manner such as in the shopping cart.
 
 # References / Bibliography
 w3schools (n.d. a) AJAX Send an XMLHttpRequest To A Server [Online] Available at: https://www.w3schools.com/xml/ajax_xmlhttprequest_send.asp [Accessed: 24 February 2022]
@@ -75,7 +93,7 @@ w3schools (n.d. c) PHP MySQL Prepared Statements [Online] Available at: https://
 
 # Written by Will Corkill
 Furness College Student ID: 40019692
-Furness College Email: 40019692@student.furness.ac.uk
+> Furness College Email: 40019692@student.furness.ac.uk
 
 UCLan Student ID: G20973951
-UCLan Email: WCorkill@uclan.ac.uk
+> UCLan Email: WCorkill@uclan.ac.uk
