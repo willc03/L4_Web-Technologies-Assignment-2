@@ -32,15 +32,14 @@ The design requirements state that the following must apply to the assessment re
  ## The Marking Scheme
  There is a banded marking scheme, the criteria below is used as a guide with academic judgement to determine a grade
 
- - Design and evaluate appropriate user interfaces for front-end web applications - Wireframing with annotations overlaid
- - Develop a front-end web application using modern development environments - web application implementation (detailed breakdown below)
- - Justify a choice of interaction methods and identify appropriate contexts of use for web applications - questions in demo regarding responsive web design
- - Demonstrate an awareness of current industry standards including those related to security, accessibility, and the design and development of web applications - questions in demo regarding HTML5 API (local/sessionStorage), web front-end frameworks etc...
+ - Develop an understanding of back-end development to build data driven web applications - using PHP to interface with the front-end and backend database service. 
+ - Justify a choice of interaction methods and identify appropriate contexts of use for web applications - Questions in demo regarding backend web development 
+ - Demonstrate an awareness of current industry standards including those related to security, accessibility, and the design and development of web applications - Questions in demo regarding HTML5, PHP and MySQL etc...
 
 ## Front-End Marking Scheme
 | Requirement | 3rd Class | 2:2 Class | 2:1 Class | 1st Class | Completed
 | -- | -- | -- | -- | -- | -- |
-| Follows brief | / | / | / | / | No |
+| Follows brief | / | / | / | / | Yes |
 | All pages are defined with .php extension (where the PHP is either inside the HTML or as a separate file) | / | / | / | / | Yes |
 | Communicates with a backend MySQL database using PHP | / | / | / | / | Yes |
 | Provides login functionality | / | / | / | / | Yes |
@@ -68,7 +67,11 @@ The design requirements state that the following must apply to the assessment re
 
 
 # References / Bibliography
+w3schools (n.d. a) AJAX Send an XMLHttpRequest To A Server [Online] Available at: https://www.w3schools.com/xml/ajax_xmlhttprequest_send.asp [Accessed: 24 February 2022]
 
+w3schools (n.d. b) How To Create A Validation Form [Online] Available at: https://www.w3schools.com/howto/howto_js_password_validation.asp [Accessed: 20 February 2022]
+
+w3schools (n.d. c) PHP MySQL Prepared Statements [Online] Available at: https://www.w3schools.com/php/php_mysql_prepared_statements.asp [Accessed: 25 February 2022]
 
 # Written by Will Corkill
 Furness College Student ID: 40019692
