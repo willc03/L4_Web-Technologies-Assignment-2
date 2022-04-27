@@ -52,6 +52,7 @@ function performCheckout() {
     if (countItems > 0)
     {
         itemPostString = itemPostString.slice(0, -1);
+        // XMLHttpRequest information from w3schools (n.d. a)
         var XmlHttp = new XMLHttpRequest();
         XmlHttp.open("POST", "../Scripts/Server/Checkout.php", true)
         XmlHttp.onload = function() {

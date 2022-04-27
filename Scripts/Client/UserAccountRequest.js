@@ -1,4 +1,5 @@
 function UserAccountRequest(currentContent) {
+    // AJAX request information was found at w3schools (n.d. a)
     var XmlHttp = new XMLHttpRequest();
     XmlHttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {

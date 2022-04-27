@@ -22,6 +22,7 @@ function database_connect()
 // Create a function which can execute prepared statements
 function prepare_statement($statement, $parameters)
 {
+    // The syntax for prepared statements was learned from w3schools (n.d c)
     // Open the database connection
     $database_connection = database_connect();
     // Create the statement

@@ -1,4 +1,5 @@
 <?php
+    // Ajax request information from w3schools (n.d. a)
     // Get useful database function
     require '../Server/Database.php';
     // Connect to the database
