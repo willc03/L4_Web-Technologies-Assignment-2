@@ -14,7 +14,7 @@
         header("Location: ./index.php");
         exit();
     }
-    if (isset($_POST["submit_type"]) and $_POST["submit_type"] == "Log in") // Check if the user has pressed log in
+    if (isset($_POST["submit_type"]) and $_POST["submit_type"] == "Log in") // Check if the user has pressed log in to process their details
     {
         // Get the information from the form
         $email = $_POST["loginEmail"];
@@ -61,6 +61,7 @@
         }
         else
         {
+            // Add the user's information to the system
             $next_user_id = get_next_primary_key("users");
             // Insert user info into the database
             $date_time = new DateTime();
@@ -113,7 +114,7 @@
                     if ((!isset($new_account)) and (isset($_POST["submit_type"]) and in_array($_POST["submit_type"], array("Sign up here", "Sign Up")))) // If the user has pressed sign up
                     {
                         echo '<br><h2 class="sub_title">Sign Up</h2><br>';
-                        if (isset($emailAlreadyExists))
+                        if (isset($emailAlreadyExists)) // Present an error message if the email already belongs to an account
                         {
                             echo '<div id="incorrect_details">';
                             echo '<h2><strong>Email in use</strong></h2>';
@@ -133,6 +134,7 @@
                         echo '<div id="password_container">';
 
                         echo '<br><label for="password">Password: </label>';
+                        // Following password section from w3schools (n.d. b)
                         echo '<input type="password" name="password" id="password" minlength="8" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required>';
 
                         echo '<ul id="password_requirements">';

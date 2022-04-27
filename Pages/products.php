@@ -71,7 +71,7 @@
             <div id="main">
                 <br>
                 <?php
-                    if (isset($_GET["review_success"]))
+                    if (isset($_GET["review_success"])) // Check if the review was successful and display a message accordingly
                     {
                         echo '<div id="review_state" class="' . $_GET["review_success"] . '">';
                         if ($_GET["review_success"] == "true")

@@ -43,7 +43,7 @@
             <div id="mobileNavigationContainer"></div>
             
             <div id="main"> <!-- Defines the main content of the page, below the header, above the footer. -->
-                <div id="error_container">
+                <div id="error_container"> <!-- The only content is a box which can redirect the user to the home page -->
                     <h2>404 Error</h2>
                     <p>The page you are looking for could not be found!</p>
                     <p>Click <a href="index.php">here</a> to return to the home page, or use the navigation bar to access our products.</p>

@@ -120,7 +120,7 @@
                     echo '<hr><h2><strong>Write a review</strong></h2>';
                     if (isset($_SESSION["name"]))
                     {
-                        echo '<form method="post" id="write_review" action="products.php">';
+                        echo '<form method="post" id="write_review" action="products.php">'; // Post is used so the content does not flood the URL
                         echo '<label for="review_title"><strong>Title:</strong></label><br>';
                         echo '<input type="text" name="review_title" maxlength="255" required>';
                         echo '<br><br><label><strong>Rating:</strong></label><br>';
@@ -135,9 +135,12 @@
                         echo '<label>Poor</label><br>';
                         echo '<input type="radio" name="rating" value="1">';
                         echo '<label>Awful</label><br><br>';
+                        // Add the description box
                         echo '<label for="review_description"><strong>Description:</strong></label><br>';
                         echo '<input type="text" name="review_description" required><br><br>';
+                        // Add a hidden input which contains the product id for later use when adding to the database
                         echo '<input type="hidden" name="product_id" value="' . $_GET["product_id"] . '">';
+                        // Submit the review using a button
                         echo '<input type="submit" value="Submit review">';
                         echo '</form>';
                     }

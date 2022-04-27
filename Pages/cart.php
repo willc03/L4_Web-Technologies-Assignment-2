@@ -47,7 +47,7 @@
             <div id="main">
                 <h2 class="title">Shopping Cart</h2>
                 <?php
-                    if (isset($_SESSION["name"])) 
+                    if (isset($_SESSION["name"])) // Create a personalised message if the user is logged in.
                     {
                         echo '<p>Welcome, ' . $_SESSION["name"] . '! You have added the following items to your cart:</p>';
                     }
@@ -75,11 +75,11 @@
                         // Show the user their previous orders if there is a user available
                         echo '<h2 class="title">Previous Orders</h2>';
                         echo '<p>The orders you have made previously are displayed below:</p>';
-                        $previous_order_statement = prepare_statement(
+                        $previous_order_statement = prepare_statement( // Get the user's previous orders from the database
                             "SELECT * FROM orders WHERE user_id = ?;",
                             array("i", $_SESSION["id"])
                         );
-                        echo '<div id="table" class="orders">';
+                        echo '<div id="table" class="orders">'; // Create a table row with headings
                         echo '<div class="table_row">';
                         echo '<strong>Order Number</strong>';
                         echo '<strong>Order Date</strong>';
@@ -87,23 +87,23 @@
                         echo '<strong>Product Name</strong>';
                         echo '<strong>Price</strong>';
                         echo '</div><hr>';
-                        if ($previous_order_statement->num_rows < 1)
+                        if ($previous_order_statement->num_rows < 1) // Validation check for if there are no orders
                         {
                             echo '<p>You have not made any orders!</p>';
                         }
                         else
                         {
-                            while ($result = $previous_order_statement->fetch_assoc())
+                            while ($result = $previous_order_statement->fetch_assoc()) // Iterate through each previosu order
                             {
-                                $product_ids = explode(" ", $result["product_ids"]);
+                                $product_ids = explode(" ", $result["product_ids"]); // 'explode' will split the string by the specified character, in this case, a space
                                 for ($index = 0; $index < count($product_ids); $index++)
                                 {
-                                    $product_info_statement = prepare_statement(
+                                    $product_info_statement = prepare_statement( // Get the information on each individual product from the database
                                         "SELECT product_type, colour, product_image, price FROM products INNER JOIN productTypes ON products.product_type = productTypes.productType AND products.product_id = ?",
                                         array("i", $product_ids[$index])
                                     );
                                     $product_info = $product_info_statement->fetch_assoc();
-                                    echo '<div class="table_row order_row">';
+                                    echo '<div class="table_row order_row">'; // Create a row with the product information
                                     echo '<p>' . $result["order_id"] . '</p>';
                                     echo '<p>' . $result["order_date"] . '</p>';
                                     echo '<img src="' . $product_info["product_image"] . '">';
