@@ -5,7 +5,7 @@ function database_connect()
     // Create variables for database credentials
     $serverName = "localhost";
     $username = "root";
-    $password = "password";
+    $password = "";
     $databaseName = "web_technologies_ass2";
     // Initiate the connection between the database and the script
     $connection = mysqli_connect($serverName, $username, $password, $databaseName);
