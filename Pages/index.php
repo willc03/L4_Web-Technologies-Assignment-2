@@ -26,11 +26,11 @@
     <body> <!-- Content in the body is visible to the user -->
         <div id="content">
             <div id="header"> <!-- Defines the top of the page, visible on all pages -->
-                <a href="index.php"> <!-- Allows the UCLan logo to act as a button (Nikitha, 2018) -->
+                <a href="index.php"> <!-- Allows the UCLan logo to act as a button -->
                     <img id="uclan_logo" src="../Images/uclan_logo.png" alt="University of Central Lancashire Logo">
                 </a>
                 <h2 id="title">Student Shop</h2>
-                <input type="image" id="hamburger_menu" src="../Images/HamburgerMenu.svg" onclick="onMenuMouseDown()" alt="Menu toggle"> <!-- Create the hamburger menu for mobile-sized devices with click event (w3schools, n.d.) -->
+                <input type="image" id="hamburger_menu" src="../Images/HamburgerMenu.svg" onclick="onMenuMouseDown()" alt="Menu toggle">
                 <nav id="navigation"> <!-- Create anchors and container for all navigation. -->
                     <a href="index.php">Home</a>
                     <a href="products.php">Products</a>
@@ -113,8 +113,8 @@
             </div>
             <div class="Contact">
                 <h3 class="category">Contact</h3>
-                <p>Email: <a href="mailto:suinformation@uclan.ac.uk">suinformation@uclan.ac.uk</a></p> <!-- mailto will open the user's email client when pressed (RapidTables, n.d.) -->
-                <p>Phone: <a href="tel:01772893000">01772 893000</a></p> <!-- tel will ask the user if they want to phone the number, if available (W3Docs, n.d.) -->
+                <p>Email: <a href="mailto:suinformation@uclan.ac.uk">suinformation@uclan.ac.uk</a></p>
+                <p>Phone: <a href="tel:01772893000">01772 893000</a></p>
             </div>
             <div class="Location">
                 <h3 class="category">Location</h3>
