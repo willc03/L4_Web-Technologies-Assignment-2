@@ -1,7 +1,6 @@
 /*
     Author: Will Corkill
-    Name: loadCart.js
-    Last Accessed: 13/01/2022
+    Name: manageCart.js
     Description: Manipulate the DOM to display all products in the cart.
 */
 const prices = {Hoodie: "£39.99", Jumper: "£29.99", Tshirt: "£19.99"};
@@ -15,14 +14,14 @@ function parseValue(localStorageValue)
 function addToCart(productType, productColour, productID) {
     // Function to be written for adding to the cart
     const numberOfKeys = Object.keys(localStorage).length;
-    localStorage.setItem(`UCLan_Item${numberOfKeys+1}`, `${productID}`); // The item in the local storage is assigned to be used on cart.html and loadCart.js
+    localStorage.setItem(`UCLan_Item${numberOfKeys+1}`, `${productID}`);
     alert(`${productColour} ${productType} has been added to your cart.`); // Show an alert informing the user of the addition to their cart.
 }
 function removeFromCart(containerId, itemIdentifier) 
 {
     localStorage.removeItem(itemIdentifier); // Remove the item from localStorage
     const container = document.getElementById(containerId);
-    container.remove(); // Remove the item from cart.html
+    container.remove(); // Remove the item from cart.php
 }
 
 function SendCartItemToServer(container, product_id, localStorageKey) {

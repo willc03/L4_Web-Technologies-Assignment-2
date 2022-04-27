@@ -1,7 +1,6 @@
 <!--
     Author: Will Corkill
     Name: cart.html
-    Last Accessed: 13/01/2022
     Description: Displays the user's currently selected items.
 -->
 <!DOCTYPE html>

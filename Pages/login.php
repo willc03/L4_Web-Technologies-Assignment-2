@@ -1,7 +1,6 @@
 <!--
     Author: Will Corkill
     Name: login.php
-    Last Accessed: 25/02/2022
     Description: The user can log in and sign up using this page.
 -->
 <!DOCTYPE html>
@@ -69,7 +68,7 @@
             // Prepare statement
             $create_new_details = prepare_statement(
                 "INSERT INTO users (user_id, user_full_name, user_address, user_email, user_pass, user_timestamp) VALUES (?, ?, ?, ?, ?, ?)",
-                array("isssss", $next_user_id, $_POST["fullName"], $_POST["address"], $_POST["email"], password_hash($_POST["password"], PASSWORD_BCRYPT), $formatted_time)
+                array("isssss", $next_user_id, $_POST["fullName"], $_POST["address"], $_POST["email"], password_hash($_POST["password"], PASSWORD_BCRYPT), $formatted_time) // PASSWORD_BCRYPT is a constant
             );
             $new_account = true;
         }

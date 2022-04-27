@@ -85,11 +85,15 @@ A section below the shopping cart on cart.php has been added which will display 
 > They are displayed in a table-link manner such as in the shopping cart.
 
 # References / Bibliography
-w3schools (n.d. a) AJAX Send an XMLHttpRequest To A Server [Online] Available at: https://www.w3schools.com/xml/ajax_xmlhttprequest_send.asp [Accessed: 24 February 2022]
+Hamid, D. (2021) JavaScript matchMedia().addListener() Alternative - Designcise [Online]. Available at: https://www.designcise.com/web/tutorial/what-is-the-substitute-for-the-deprecated-matchmedia-addlistener-method [Accessed 12 January 2022].
 
-w3schools (n.d. b) How To Create A Validation Form [Online] Available at: https://www.w3schools.com/howto/howto_js_password_validation.asp [Accessed: 20 February 2022]
+Ilik, M. (2020) Working with JavaScript Media Queries [Online]. Available at: https://css-tricks.com/working-with-javascript-media-queries/ [Accessed 12 January 2022].
 
-w3schools (n.d. c) PHP MySQL Prepared Statements [Online] Available at: https://www.w3schools.com/php/php_mysql_prepared_statements.asp [Accessed: 25 February 2022]
+w3schools (n.d. a) AJAX Send an XMLHttpRequest To A Server [Online] Available at: https://www.w3schools.com/xml/ajax_xmlhttprequest_send.asp [Accessed: 24 February 2022].
+
+w3schools (n.d. b) How To Create A Validation Form [Online] Available at: https://www.w3schools.com/howto/howto_js_password_validation.asp [Accessed: 20 February 2022].
+
+w3schools (n.d. c) PHP MySQL Prepared Statements [Online] Available at: https://www.w3schools.com/php/php_mysql_prepared_statements.asp [Accessed: 25 February 2022].
 
 # Written by Will Corkill
 Furness College Student ID: 40019692

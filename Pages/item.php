@@ -1,7 +1,6 @@
 <!--
     Author: Will Corkill
     Name: item.php
-    Last Accessed: 26/02/2022
     Description: The page which will display a specific item. Only accessible via clicking on an item.
 -->
 <!DOCTYPE html>

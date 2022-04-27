@@ -1,7 +1,6 @@
 <!--
     Author: Will Corkill
     Name: index.php
-    Last Accessed: 25/02/2022
     Description: The first page the user will see on the website.
 -->
 <!DOCTYPE html>

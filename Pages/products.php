@@ -1,7 +1,6 @@
 <!--
     Author: Will Corkill
     Name: products.html
-    Last Accessed: 13/01/2022
     Description: The page displaying all of the products to the user.
 -->
 <!DOCTYPE html>

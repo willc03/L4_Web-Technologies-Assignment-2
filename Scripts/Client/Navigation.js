@@ -1,7 +1,6 @@
 /*
     Author: Will Corkill
     Name: navigation.js
-    Last Accessed: 13/01/2022
     Description: Manipulate the DOM to toggle the menu display, move navigation based on screen size.
 */
 var isWindowLoaded = false; // Explained on line 29

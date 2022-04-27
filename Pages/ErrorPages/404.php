@@ -1,7 +1,6 @@
 <!--
     Author: Will Corkill
     Name: 404.php
-    Last Accessed: 23/02/2022
     Description: An error page to be displayed when the user accesses an invalid URL.
 -->
 <!DOCTYPE html>

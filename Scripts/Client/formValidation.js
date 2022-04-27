@@ -1,7 +1,6 @@
 /*
     Author: Will Corkill
     Name: formValidation.js
-    Last Accessed: 18/02/2022
     Description: This will be used to make sure that the forms on the website are fully validated.
 */
 
