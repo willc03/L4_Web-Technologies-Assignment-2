@@ -14,7 +14,7 @@ The design requirements state that the following must apply to the assessment re
  - [x] Allow users to sign up to the shop in order to make purchases
  - [x] Provide latest offers from the database presented on the homepage of the web application
  - [x] Present the shop items from the database rather than statically hardcoded inside the HTML
- - [ ] Contain a README file detailing any set up instructions (passwords for tutors to assess the work) and any decisions you've made you want the tutor to know which is evidenced in the demonstration
+ - [x] Contain a README file detailing any set up instructions (passwords for tutors to assess the work) and any decisions you've made you want the tutor to know which is evidenced in the demonstration
 
 ### Optional Extras
 
