@@ -45,7 +45,7 @@ The design requirements state that the following must apply to the assessment re
 | Provides login functionality | / | / | / | / | Yes |
 | Provides live offers | / | / | / | / | Yes |
 | Product items are stored in the database | / | / | / | / | Yes |
-| Submission includes a README.md file | / | / | / | / | No |
+| Submission includes a README.md file | / | / | / | / | Yes |
 | Uses sessions to detect logged in users |  | / | / | / | Yes |
 | Basic browse product view |  | / | / | / | Yes |
 | Provides a personalised greeting |  | / | / | / | Yes |
@@ -70,7 +70,7 @@ Various changes to the database have been made as the website has progressed in 
 Firstly, as each section of the website was developed, the names of the tables were changed from tbl_[table_name] to simply [table_name], this was purely for organisational purposes, to signify that this section of the database was either in progress or complete.
 > For example 'tbl_products' becomes 'products'
 
-Next, the largest change to the database was removing the 'product_type'-related information from the database. This was primarily done for reasons of reducing the storage taken up by having the information on every row in the table, however, this information was moved into a separate table with a one-to-many relationship. The data was moved to prevent the 'update' anomaly to occur - meaning the data will only have to be updated in one place to affect all records.
+Next, the largest change to the database was removing the 'product_type'-related information from the database. This was primarily done for reasons of reducing the storage taken up by having the information on every row in the table, thus, this information was moved into a separate table with a one-to-many relationship. The data was also moved to prevent the 'update' anomaly from occurring - meaning the data will only have to be updated in one place to affect all records.
 
 Another change in the products table is the change of all the image paths. Due to conflicting names between the file paths on the file names themselves and the pre-set database. The change of the file paths in the database improves the organisation.
 
